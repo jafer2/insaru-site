@@ -4,19 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Insaru – Replace Your Letting Agent. Keep 99% of Your Rent.</title>
+
   <meta name="description" content="Enterprise-grade property management for landlords. Zero-knowledge encryption, forced compliance, automated rent collection. Replace £1,440/year agents with £72/year software." />
+
   <meta property="og:title" content="Insaru – Replace Your Letting Agent"/>
   <meta property="og:description" content="Save £1,368/year per property. Local-first property management with automated compliance and rent collection."/>
-  <meta property="og:image" content="branding/soon.png"/>
+  <meta property="og:image" content="branding/insaru-coming-soon-og_1200x630.jpg"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
       --cosmic-black: #0a0a0f;
@@ -28,6 +30,8 @@
       --text-secondary: #b8b8c8;
       --text-muted: #6e6e7e;
     }
+
+    html, body { height: 100%; }
 
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -42,11 +46,9 @@
     body::before {
       content: '';
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: 
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background:
         radial-gradient(2px 2px at 20% 30%, white, transparent),
         radial-gradient(2px 2px at 60% 70%, white, transparent),
         radial-gradient(1px 1px at 50% 50%, white, transparent),
@@ -67,7 +69,7 @@
       50% { background-position: 100% 100%; }
     }
 
-    /* Gradient glow effect */
+    /* Gradient glow orbs */
     .glow-orb {
       position: fixed;
       width: 600px;
@@ -77,6 +79,9 @@
       opacity: 0.15;
       pointer-events: none;
       z-index: 0;
+
+      /* Parallax offsets without breaking CSS animations */
+      translate: var(--tx, 0px) var(--ty, 0px);
     }
 
     .glow-orb-1 {
@@ -132,23 +137,20 @@
     .logo-section {
       text-align: center;
       animation: fadeInScale 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+      width: min(1100px, 100%);
     }
 
     @keyframes fadeInScale {
-      0% {
-        opacity: 0;
-        transform: scale(0.8) translateY(30px);
-      }
-      100% {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-      }
+      0% { opacity: 0; transform: scale(0.8) translateY(30px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
     }
 
     .logo-wrapper {
       position: relative;
-      display: inline-block;
-      margin-bottom: 3rem;
+      display: block;
+      margin: 0 auto 2rem;
+      width: 100%;
+      max-width: 980px;
     }
 
     .logo-wrapper::after {
@@ -171,17 +173,21 @@
       50% { opacity: 0.3; transform: translate(-50%, -50%) scale(1.1); }
     }
 
-    .logo-image {
-      max-width: min(600px, 80vw);
+    /* Responsive hero image (NOT treated as a logo) */
+    .hero-image {
+      width: 100%;
+      max-width: 980px;
+      max-height: min(52vh, 560px);
       height: auto;
+      object-fit: contain;
       display: block;
-      filter: drop-shadow(0 0 40px rgba(107, 76, 230, 0.5));
+      border-radius: 18px;
+      filter: drop-shadow(0 0 40px rgba(107, 76, 230, 0.35));
       transition: transform 0.3s ease;
+      margin: 0 auto;
     }
 
-    .logo-image:hover {
-      transform: scale(1.02);
-    }
+    .hero-image:hover { transform: scale(1.01); }
 
     /* Headline */
     .headline {
@@ -190,7 +196,7 @@
       font-weight: 300;
       letter-spacing: -0.02em;
       line-height: 1.1;
-      margin-bottom: 1.5rem;
+      margin: 0.5rem 0 1.5rem;
       background: linear-gradient(135deg, #ffffff 0%, var(--cosmic-blue) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -199,14 +205,8 @@
     }
 
     @keyframes fadeInUp {
-      0% {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
 
     .headline-accent {
@@ -254,9 +254,7 @@
     .stat-card::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       height: 2px;
       background: linear-gradient(90deg, transparent, var(--cosmic-blue), transparent);
       opacity: 0;
@@ -269,9 +267,7 @@
       background: rgba(255, 255, 255, 0.05);
     }
 
-    .stat-card:hover::before {
-      opacity: 1;
-    }
+    .stat-card:hover::before { opacity: 1; }
 
     .stat-value {
       font-size: 2.5rem;
@@ -289,7 +285,7 @@
       font-weight: 400;
     }
 
-    /* CTA Section */
+    /* CTA */
     .cta-section {
       text-align: center;
       animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.8s both;
@@ -313,10 +309,7 @@
       margin: 0 auto 2rem;
     }
 
-    .email-input-wrapper {
-      position: relative;
-      width: 100%;
-    }
+    .email-input-wrapper { position: relative; width: 100%; }
 
     .email-input {
       width: 100%;
@@ -331,9 +324,7 @@
       font-family: 'Inter', sans-serif;
     }
 
-    .email-input::placeholder {
-      color: var(--text-muted);
-    }
+    .email-input::placeholder { color: var(--text-muted); }
 
     .email-input:focus {
       border-color: var(--cosmic-blue);
@@ -370,27 +361,28 @@
       transition: left 0.5s ease;
     }
 
-    .notify-button:hover::before {
-      left: 100%;
-    }
+    .notify-button:hover::before { left: 100%; }
 
     .notify-button:hover {
       transform: translateY(-2px);
       box-shadow: 0 10px 30px rgba(77, 163, 255, 0.4);
     }
 
-    .notify-button:active {
-      transform: translateY(0);
+    .notify-button:active { transform: translateY(0); }
+
+    .notify-button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
     }
 
-    /* Social proof */
     .social-proof {
       font-size: 0.9rem;
       color: var(--text-muted);
       margin-top: 1rem;
     }
 
-    /* Footer */
     footer {
       position: relative;
       z-index: 1;
@@ -416,33 +408,8 @@
       transition: color 0.3s ease;
     }
 
-    .footer-links a:hover {
-      color: var(--cosmic-blue);
-    }
+    .footer-links a:hover { color: var(--cosmic-blue); }
 
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-      .stats-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-      }
-
-      .headline {
-        font-size: 2.5rem;
-      }
-
-      .logo-image {
-        max-width: 90vw;
-      }
-    }
-
-    /* Loading state for form */
-    .notify-button:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
-
-    /* Success message */
     .success-message {
       display: none;
       padding: 1rem;
@@ -455,48 +422,51 @@
     }
 
     @keyframes slideIn {
-      from {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    .success-message.show {
-      display: block;
+    .success-message.show { display: block; }
+
+    @media (max-width: 768px) {
+      .stats-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .headline { font-size: 2.5rem; }
+      .hero-image { max-height: 55vh; }
     }
   </style>
 </head>
 <body>
-  <!-- Animated background orbs -->
   <div class="glow-orb glow-orb-1"></div>
   <div class="glow-orb glow-orb-2"></div>
   <div class="glow-orb glow-orb-3"></div>
 
   <div class="container">
     <div class="logo-section">
-      <!-- Logo -->
       <div class="logo-wrapper">
-        <img src="branding/soon.png" alt="Insaru - Enterprise Property Management" class="logo-image"/>
+        <!-- Responsive hero image set (use these exact filenames in /branding/) -->
+        <picture>
+          <source srcset="branding/insaru-coming-soon-desktop_2560x1440.jpg" media="(min-width: 1200px)">
+          <source srcset="branding/insaru-coming-soon-desktop_1920x1080.jpg" media="(min-width: 768px)">
+          <img
+            src="branding/insaru-coming-soon-mobile_1080x1920.jpg"
+            alt="Insaru — Coming Soon"
+            class="hero-image"
+            loading="eager"
+          />
+        </picture>
       </div>
 
-      <!-- Headline -->
       <h1 class="headline">
         Replace Your Letting Agent.
         <span class="headline-accent">Keep 99% of Your Rent.</span>
       </h1>
 
-      <!-- Subheadline -->
       <p class="subheadline">
-        Enterprise-grade property management with zero-knowledge encryption, 
-        forced compliance workflows, and automated rent collection. 
+        Enterprise-grade property management with zero-knowledge encryption,
+        forced compliance workflows, and automated rent collection.
         Save £1,368/year per property.
       </p>
 
-      <!-- Stats -->
       <div class="stats-grid">
         <div class="stat-card">
           <div class="stat-value">1%</div>
@@ -512,23 +482,21 @@
         </div>
       </div>
 
-      <!-- CTA -->
       <div class="cta-section">
         <div class="launch-date">Launching Q2 2026</div>
-        
+
         <form class="email-form" id="notifyForm">
           <div class="email-input-wrapper">
-            <input 
-              type="email" 
-              class="email-input" 
+            <input
+              type="email"
+              class="email-input"
               placeholder="Enter your email for early access"
               required
               id="emailInput"
+              autocomplete="email"
             />
           </div>
-          <button type="submit" class="notify-button">
-            Notify Me at Launch
-          </button>
+          <button type="submit" class="notify-button">Notify Me at Launch</button>
         </form>
 
         <div class="success-message" id="successMessage">
@@ -556,47 +524,42 @@
   </footer>
 
   <script>
-    // Email form submission
-    document.getElementById('notifyForm').addEventListener('submit', function(e) {
+    // Email form submission (replace with real endpoint when ready)
+    document.getElementById('notifyForm').addEventListener('submit', function (e) {
       e.preventDefault();
-      
+
       const button = this.querySelector('.notify-button');
       const successMessage = document.getElementById('successMessage');
       const emailInput = document.getElementById('emailInput');
-      
-      // Disable button
+
       button.disabled = true;
+      const oldText = button.textContent;
       button.textContent = 'Submitting...';
-      
-      // Simulate API call (replace with actual endpoint)
+
+      // Simulate API call
       setTimeout(() => {
-        // Show success message
         successMessage.classList.add('show');
-        
-        // Reset form
         emailInput.value = '';
-        button.textContent = 'Notify Me at Launch';
+        button.textContent = oldText;
         button.disabled = false;
-        
-        // Hide success message after 5 seconds
-        setTimeout(() => {
-          successMessage.classList.remove('show');
-        }, 5000);
+
+        setTimeout(() => successMessage.classList.remove('show'), 5000);
       }, 1000);
     });
 
-    // Add subtle parallax effect on mouse move
+    // Parallax without breaking CSS animations
     document.addEventListener('mousemove', (e) => {
       const orbs = document.querySelectorAll('.glow-orb');
       const x = e.clientX / window.innerWidth;
       const y = e.clientY / window.innerHeight;
-      
+
       orbs.forEach((orb, index) => {
         const speed = (index + 1) * 20;
         const xOffset = (x - 0.5) * speed;
         const yOffset = (y - 0.5) * speed;
-        
-        orb.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+
+        orb.style.setProperty('--tx', `${xOffset}px`);
+        orb.style.setProperty('--ty', `${yOffset}px`);
       });
     });
   </script>
