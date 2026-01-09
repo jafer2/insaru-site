@@ -5,15 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Features - Insaru Property Management</title>
   <meta name="description" content="Zero-knowledge encryption, automated compliance, rent collection, arrears escalation, legal document generation, and HMRC tax reports. Enterprise-grade property management." />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
       --cosmic-black: #0a0a0f;
@@ -26,23 +24,60 @@
       --text-muted: #6e6e7e;
     }
 
+    html, body { height: 100%; }
+
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background: var(--cosmic-black);
       color: var(--text-primary);
       overflow-x: hidden;
       line-height: 1.6;
+      position: relative;
+      min-height: 100vh;
     }
 
-    /* Subtle animated background */
-    .bg-canvas {
+    /* =========================
+       BACKGROUND (same as Home)
+       ========================= */
+    #mathBg {
       position: fixed;
-      top: 0;
-      left: 0;
+      inset: 0;
       width: 100%;
       height: 100%;
+      display: block;
       z-index: 0;
-      opacity: 0.3;
+    }
+
+    /* Static large centered logo (same as Home) */
+    .logo-center {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: min(1200px, 88vw);
+      opacity: 0.16;
+      filter: drop-shadow(0 0 70px rgba(107, 76, 230, 0.35));
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Vignette + light grain (same as Home) */
+    .fx {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      background:
+        radial-gradient(60% 55% at 50% 40%, rgba(0,0,0,0) 0%, rgba(0,0,0,.32) 68%, rgba(0,0,0,.70) 100%),
+        linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.08) 45%, rgba(0,0,0,.62) 100%);
+    }
+    .fx::after{
+      content:"";
+      position:absolute;
+      inset:-40px;
+      opacity:.06;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.28'/%3E%3C/svg%3E");
     }
 
     /* Header */
@@ -51,9 +86,11 @@
       top: 0;
       z-index: 100;
       padding: 1.5rem 2rem;
-      background: rgba(10, 10, 15, 0.8);
+
+      /* allow the background to still be visible */
+      background: rgba(10, 10, 15, 0.65);
       backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     }
 
     .header-content {
@@ -62,6 +99,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      position: relative;
+      z-index: 3;
     }
 
     .logo-link {
@@ -74,17 +113,13 @@
       text-decoration: none;
       transition: opacity 0.3s;
     }
-
-    .logo-link:hover {
-      opacity: 0.8;
-    }
+    .logo-link:hover { opacity: 0.8; }
 
     nav {
       display: flex;
       gap: 2.5rem;
       align-items: center;
     }
-
     nav a {
       color: var(--text-secondary);
       text-decoration: none;
@@ -92,18 +127,22 @@
       transition: color 0.3s;
       font-weight: 500;
     }
-
-    nav a:hover, nav a.active {
-      color: var(--cosmic-blue);
-    }
+    nav a:hover, nav a.active { color: var(--cosmic-blue); }
 
     /* Main container */
     .container {
       position: relative;
-      z-index: 1;
+      z-index: 3; /* sits above bg + logo + fx */
       padding: 4rem 2rem;
       max-width: 1400px;
       margin: 0 auto;
+
+      /* subtle inner veil like Home so text reads */
+      background: radial-gradient(circle at center,
+        transparent 0%,
+        rgba(10, 10, 15, 0.18) 60%,
+        rgba(10, 10, 15, 0.60) 100%
+      );
     }
 
     /* Hero section */
@@ -112,7 +151,6 @@
       margin-bottom: 8rem;
       animation: fadeInUp 1s ease-out;
     }
-
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
@@ -152,9 +190,7 @@
     }
 
     /* Feature categories */
-    .category {
-      margin-bottom: 8rem;
-    }
+    .category { margin-bottom: 8rem; }
 
     .category-header {
       text-align: center;
@@ -162,10 +198,7 @@
       animation: fadeInUp 1s ease-out;
     }
 
-    .category-icon {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-    }
+    .category-icon { font-size: 3rem; margin-bottom: 1rem; }
 
     .category-title {
       font-family: 'Cormorant Garamond', Georgia, serif;
@@ -200,6 +233,7 @@
       transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       position: relative;
       overflow: hidden;
+      backdrop-filter: blur(10px);
     }
 
     .feature-card::before {
@@ -221,9 +255,7 @@
       box-shadow: 0 30px 80px rgba(77, 163, 255, 0.2);
     }
 
-    .feature-card:hover::before {
-      opacity: 1;
-    }
+    .feature-card:hover::before { opacity: 1; }
 
     .feature-icon {
       width: 60px;
@@ -251,11 +283,7 @@
       margin-bottom: 1.5rem;
     }
 
-    .feature-list {
-      list-style: none;
-      padding: 0;
-    }
-
+    .feature-list { list-style: none; padding: 0; }
     .feature-list li {
       padding: 0.6rem 0;
       padding-left: 1.8rem;
@@ -263,7 +291,6 @@
       color: var(--text-secondary);
       font-size: 0.95rem;
     }
-
     .feature-list li::before {
       content: "✓";
       position: absolute;
@@ -290,6 +317,7 @@
       animation: fadeInUp 1s ease-out 0.4s both;
       position: relative;
       overflow: hidden;
+      backdrop-filter: blur(10px);
     }
 
     .showcase::before {
@@ -308,15 +336,8 @@
       to { transform: rotate(360deg); }
     }
 
-    .showcase-content {
-      position: relative;
-      z-index: 1;
-    }
-
-    .showcase-icon {
-      font-size: 4rem;
-      margin-bottom: 2rem;
-    }
+    .showcase-content { position: relative; z-index: 1; }
+    .showcase-icon { font-size: 4rem; margin-bottom: 2rem; }
 
     .showcase-title {
       font-family: 'Cormorant Garamond', Georgia, serif;
@@ -344,9 +365,7 @@
       margin-top: 3rem;
     }
 
-    .showcase-stat {
-      text-align: center;
-    }
+    .showcase-stat { text-align: center; }
 
     .stat-value {
       font-size: 3rem;
@@ -415,7 +434,6 @@
       border: none;
       color: white;
     }
-
     .btn-primary:hover {
       transform: translateY(-4px);
       box-shadow: 0 15px 50px rgba(77, 163, 255, 0.4);
@@ -426,7 +444,6 @@
       border: 2px solid var(--cosmic-blue);
       color: var(--cosmic-blue);
     }
-
     .btn-secondary:hover {
       background: var(--cosmic-blue);
       color: white;
@@ -435,6 +452,8 @@
 
     /* Footer */
     footer {
+      position: relative;
+      z-index: 3;
       text-align: center;
       padding: 3rem 2rem;
       border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -449,39 +468,21 @@
       margin-bottom: 1.5rem;
       flex-wrap: wrap;
     }
-
     .footer-links a {
       color: var(--text-secondary);
       text-decoration: none;
       transition: color 0.3s;
     }
-
-    .footer-links a:hover {
-      color: var(--cosmic-blue);
-    }
+    .footer-links a:hover { color: var(--cosmic-blue); }
 
     /* Responsive */
     @media (max-width: 768px) {
-      .features-grid {
-        grid-template-columns: 1fr;
-      }
-
-      nav {
-        display: none;
-      }
-
-      .showcase-stats {
-        flex-direction: column;
-        gap: 2rem;
-      }
-
-      .cta-buttons {
-        flex-direction: column;
-      }
-
-      .btn {
-        width: 100%;
-      }
+      .features-grid { grid-template-columns: 1fr; }
+      nav { display: none; }
+      .showcase-stats { flex-direction: column; gap: 2rem; }
+      .cta-buttons { flex-direction: column; }
+      .btn { width: 100%; }
+      .logo-center { width: 192vw; opacity: 0.14; }
     }
 
     /* Scroll reveal animation */
@@ -490,16 +491,26 @@
       transform: translateY(30px);
       transition: opacity 0.6s ease-out, transform 0.6s ease-out;
     }
-
     .reveal.active {
       opacity: 1;
       transform: translateY(0);
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      #mathBg { display: none; }
+    }
   </style>
 </head>
+
 <body>
-  <!-- Animated background -->
-  <canvas class="bg-canvas" id="bgCanvas"></canvas>
+  <!-- Background maths field -->
+  <canvas id="mathBg"></canvas>
+
+  <!-- Static large centered logo -->
+  <img src="logo2 (2).png" alt="" class="logo-center" aria-hidden="true"/>
+
+  <!-- Vignette / grain -->
+  <div class="fx" aria-hidden="true"></div>
 
   <!-- Header -->
   <header>
@@ -522,7 +533,7 @@
       <div class="hero-badge">Complete Property Management</div>
       <h1 class="hero-title">Everything You Need.<br/>Nothing You Don't.</h1>
       <p class="hero-subtitle">
-        Replace expensive letting agents with enterprise-grade software. 
+        Replace expensive letting agents with enterprise-grade software.
         Automated compliance, rent collection, legal protection, and HMRC reporting — all in one place.
       </p>
     </section>
@@ -533,11 +544,11 @@
         <div class="category-icon">🔐</div>
         <h2 class="category-title">Security & Privacy</h2>
         <p class="category-description">
-          Zero-knowledge encryption means we literally cannot access your data. 
+          Zero-knowledge encryption means we literally cannot access your data.
           Your property details, rent amounts, and tenant information stay on your device.
         </p>
       </div>
-      
+
       <div class="features-grid">
         <div class="feature-card reveal">
           <div class="feature-icon">🛡️</div>
@@ -589,11 +600,11 @@
         <div class="category-icon">⚖️</div>
         <h2 class="category-title">Compliance & Legal Protection</h2>
         <p class="category-description">
-          Forced compliance workflows prevent costly legal mistakes. 
+          Forced compliance workflows prevent costly legal mistakes.
           Insaru won't let you skip required steps — protecting you from tribunals.
         </p>
       </div>
-      
+
       <div class="features-grid">
         <div class="feature-card reveal">
           <div class="feature-icon">📋</div>
@@ -647,7 +658,7 @@
         <div class="showcase-icon">⚡</div>
         <h2 class="showcase-title">Automation That Just Works</h2>
         <p class="showcase-description">
-          Stop chasing rent manually. Insaru automates rent collection, arrears escalation, 
+          Stop chasing rent manually. Insaru automates rent collection, arrears escalation,
           and maintenance workflows — while keeping you in control with approval gates.
         </p>
         <div class="showcase-stats">
@@ -673,11 +684,11 @@
         <div class="category-icon">🤖</div>
         <h2 class="category-title">Automation & Workflows</h2>
         <p class="category-description">
-          Hands-off management that works for you. Automated reminders, escalations, 
+          Hands-off management that works for you. Automated reminders, escalations,
           and workflows with human approval gates where it matters.
         </p>
       </div>
-      
+
       <div class="features-grid">
         <div class="feature-card reveal">
           <div class="feature-icon">💰</div>
@@ -731,11 +742,11 @@
         <div class="category-icon">📊</div>
         <h2 class="category-title">Financial & Tax Reporting</h2>
         <p class="category-description">
-          HMRC-ready reports at the click of a button. Income, expenses, and evidence bundle 
+          HMRC-ready reports at the click of a button. Income, expenses, and evidence bundle
           pre-filled for your SA105 tax return.
         </p>
       </div>
-      
+
       <div class="features-grid">
         <div class="feature-card reveal">
           <div class="feature-icon">💵</div>
@@ -787,7 +798,7 @@
     <section class="cta-section">
       <h2 class="cta-title">Ready to Replace Your Agent?</h2>
       <p class="cta-description">
-        Start managing your properties with enterprise-grade tools. 
+        Start managing your properties with enterprise-grade tools.
         Free forever for basic features, only pay when we add value.
       </p>
       <div class="cta-buttons">
@@ -813,69 +824,244 @@
   </footer>
 
   <script>
-    // Subtle animated background
-    (function() {
-      const canvas = document.getElementById('bgCanvas');
-      const ctx = canvas.getContext('2d');
-      
+    /**
+     * FLOW FIELD BACKGROUND (same as Home)
+     */
+    (function () {
+      const canvas = document.getElementById('mathBg');
+      const ctx = canvas.getContext('2d', { alpha: false });
+
+      const DPR = Math.min(2, window.devicePixelRatio || 1);
+      let W = 0, H = 0;
+
+      const mouse = { x: 0.5, y: 0.5 };
+      window.addEventListener('mousemove', (e) => {
+        mouse.x = e.clientX / window.innerWidth;
+        mouse.y = e.clientY / window.innerHeight;
+      }, { passive: true });
+
+      const logo = new Image();
+      logo.decoding = 'async';
+      logo.crossOrigin = 'anonymous';
+      logo.src = 'logo2 (2).png';
+
+      const map = {
+        ready: false,
+        w: 256,
+        h: 256,
+        data: null,
+        cx: 0, cy: 0, size: 0
+      };
+
       function resize() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        W = Math.floor(window.innerWidth * DPR);
+        H = Math.floor(window.innerHeight * DPR);
+        canvas.width = W;
+        canvas.height = H;
+
+        map.cx = W * 0.5;
+        map.cy = H * 0.5;
+        map.size = Math.min(W, H) * 0.62;
+
+        ctx.fillStyle = '#0a0a0f';
+        ctx.fillRect(0, 0, W, H);
       }
-      resize();
       window.addEventListener('resize', resize);
+      resize();
+
+      function buildAlphaMap() {
+        const oc = document.createElement('canvas');
+        oc.width = map.w;
+        oc.height = map.h;
+        const octx = oc.getContext('2d');
+
+        octx.clearRect(0, 0, map.w, map.h);
+
+        const s = Math.min(map.w, map.h) * 0.9;
+        const x = (map.w - s) / 2;
+        const y = (map.h - s) / 2;
+        octx.drawImage(logo, x, y, s, s);
+
+        const img = octx.getImageData(0, 0, map.w, map.h).data;
+        const a = new Float32Array(map.w * map.h);
+
+        for (let i = 0; i < map.w * map.h; i++) {
+          const r = img[i * 4 + 0];
+          const g = img[i * 4 + 1];
+          const b = img[i * 4 + 2];
+          const alpha = img[i * 4 + 3] / 255;
+
+          const lum = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
+          const v = alpha > 0.02 ? alpha : Math.max(0, lum - 0.15);
+          a[i] = v;
+        }
+
+        map.data = a;
+        map.ready = true;
+      }
+
+      logo.onload = () => buildAlphaMap();
+      logo.onerror = () => { map.ready = false; };
+
+      function sampleMask(px, py) {
+        if (!map.ready) return 0;
+
+        const half = map.size / 2;
+        const lx = (px - (map.cx - half)) / map.size;
+        const ly = (py - (map.cy - half)) / map.size;
+        if (lx < 0 || lx > 1 || ly < 0 || ly > 1) return 0;
+
+        const ix = Math.max(0, Math.min(map.w - 1, (lx * (map.w - 1)) | 0));
+        const iy = Math.max(0, Math.min(map.h - 1, (ly * (map.h - 1)) | 0));
+        return map.data[iy * map.w + ix];
+      }
+
+      function noise2(x, y, t) {
+        return Math.sin(1.7 * x + 1.3 * t) * Math.cos(1.9 * y - 1.1 * t)
+             + Math.sin(2.9 * (x + y) + 0.7 * t) * 0.5;
+      }
+
+      function field(px, py, t) {
+        const x = (px / W) * 2 - 1;
+        const y = (py / H) * 2 - 1;
+
+        const mx = (mouse.x - 0.5) * 0.18;
+        const my = (mouse.y - 0.5) * 0.18;
+
+        const w1 = noise2(x + mx, y + my, t);
+        const w2 = noise2(x * 1.7 - my, y * 1.7 + mx, t * 0.9);
+
+        const wx = x + 0.18 * w1;
+        const wy = y + 0.18 * w2;
+
+        const a = noise2(wx, wy, t * 0.7);
+
+        const vx = Math.cos(a * Math.PI * 1.2) + 0.35 * Math.sin(w2 * 2.2);
+        const vy = Math.sin(a * Math.PI * 1.2) - 0.35 * Math.cos(w1 * 2.2);
+
+        return { vx, vy };
+      }
 
       const particles = [];
-      const particleCount = 80;
+      const isMobile = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
 
-      for (let i = 0; i < particleCount; i++) {
-        particles.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 0.5,
-          vy: (Math.random() - 0.5) * 0.5,
-          size: Math.random() * 2 + 1
-        });
+      const COUNT = isMobile ? 1400 : 2400;
+      const SPEED = isMobile ? 0.85 : 1.05;
+
+      function rand(n) { return Math.random() * n; }
+
+      function spawn(p) {
+        for (let tries = 0; tries < 60; tries++) {
+          const angle = rand(Math.PI * 2);
+          const radius = (0.18 + Math.random() * 0.42) * Math.min(W, H);
+          const x = map.cx + Math.cos(angle) * radius;
+          const y = map.cy + Math.sin(angle) * radius;
+
+          const m = sampleMask(x, y);
+          const ok = map.ready ? (m > 0.06 || Math.random() < 0.20) : true;
+          if (ok) {
+            p.x = x; p.y = y;
+            p.px = x; p.py = y;
+            p.life = 0;
+            p.hue = 200 + Math.random() * 90;
+            p.w = 0.6 + Math.random() * 1.2;
+            return;
+          }
+        }
+
+        p.x = rand(W); p.y = rand(H);
+        p.px = p.x; p.py = p.y;
+        p.life = 0;
+        p.hue = 200 + Math.random() * 90;
+        p.w = 0.6 + Math.random() * 1.2;
       }
 
-      function animate() {
-        ctx.fillStyle = 'rgba(10, 10, 15, 0.1)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < COUNT; i++) {
+        const p = { x: 0, y: 0, px: 0, py: 0, life: 0, hue: 0, w: 1 };
+        spawn(p);
+        p.life = Math.random() * 140;
+        particles.push(p);
+      }
 
-        ctx.fillStyle = 'rgba(77, 163, 255, 0.3)';
-        
-        particles.forEach(p => {
-          p.x += p.vx;
-          p.y += p.vy;
+      let last = performance.now();
+      let t0 = performance.now();
 
-          if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-          if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+      function step(now) {
+        const dt = Math.min(0.033, (now - last) / 1000);
+        last = now;
+        const t = (now - t0) / 1000;
 
+        // Fade (trails) - reduce alpha to make background "stronger"
+        ctx.save();
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.fillStyle = 'rgba(10,10,15,0.06)'; // stronger trails than 0.10
+        ctx.fillRect(0, 0, W, H);
+        ctx.restore();
+
+        ctx.save();
+        ctx.globalCompositeOperation = 'lighter';
+        ctx.lineCap = 'round';
+
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+
+          const m = map.ready ? sampleMask(p.x, p.y) : 0;
+
+          let gx = 0, gy = 0;
+          if (map.ready) {
+            const e = 2.0 * DPR;
+            gx = sampleMask(p.x + e, p.y) - sampleMask(p.x - e, p.y);
+            gy = sampleMask(p.x, p.y + e) - sampleMask(p.x, p.y - e);
+          }
+
+          let tx = -gy, ty = gx;
+          const tl = Math.hypot(tx, ty) || 1;
+          tx /= tl; ty /= tl;
+
+          const f = field(p.x, p.y, t);
+
+          const k = 0.55 + 1.8 * m;
+          const vx = (f.vx * 0.85 + tx * k);
+          const vy = (f.vy * 0.85 + ty * k);
+
+          p.px = p.x; p.py = p.y;
+          p.x += vx * SPEED * (120 * DPR) * dt;
+          p.y += vy * SPEED * (120 * DPR) * dt;
+          p.life += 1;
+
+          // Increase line opacity for a stronger electric look
+          const a = 0.12 + 0.32 * Math.min(1, m * 2);
+          ctx.strokeStyle = `hsla(${p.hue}, 95%, 65%, ${a})`;
+          ctx.lineWidth = p.w * DPR;
           ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-          ctx.fill();
-        });
+          ctx.moveTo(p.px, p.py);
+          ctx.lineTo(p.x, p.y);
+          ctx.stroke();
 
-        requestAnimationFrame(animate);
+          if (p.x < -50 || p.x > W + 50 || p.y < -50 || p.y > H + 50 || p.life > 320) {
+            spawn(p);
+          }
+        }
+
+        ctx.restore();
+        requestAnimationFrame(step);
       }
 
       ctx.fillStyle = '#0a0a0f';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      animate();
+      ctx.fillRect(0, 0, W, H);
+      requestAnimationFrame(step);
     })();
 
-    // Scroll reveal animation
+    /**
+     * Scroll reveal animation (your existing logic)
+     */
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-        }
+        if (entry.isIntersecting) entry.target.classList.add('active');
       });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.reveal').forEach(el => {
-      observer.observe(el);
-    });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   </script>
 </body>
 </html>
