@@ -1,19 +1,14 @@
-<!-- =========================
-     pricing.html (UPDATED)
-     Same electric maths background + same logo as index.html
-     Uses: logonew.png everywhere
-     ========================= -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Pricing - Insaru Property Management</title>
-  <meta name="description" content="Replace your letting agent for 1% instead of 10%. Save £1,368/year per property with Insaru's enterprise-grade property management." />
+  <meta name="description" content="Dynamic pricing from 0.25% to 1%. The more organized you are and the more you scale, the less you pay." />
 
   <meta property="og:title" content="Pricing – Insaru"/>
-  <meta property="og:description" content="Replace your letting agent for 1% instead of 10%. Save £1,368/year per property."/>
-  <meta property="og:image" content="logo2 (2).png"/>
+  <meta property="og:description" content="0.25%–1% + Stripe. Fair, performance-based pricing. Scale up, pay less."/>
+  <meta property="og:image" content="logonew.png"/>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -45,9 +40,7 @@
       min-height: 100vh;
     }
 
-    /* =========================
-       BACKGROUND: same as home
-       ========================= */
+    /* Mathematical background */
     #mathBg {
       position: fixed;
       inset: 0;
@@ -87,9 +80,7 @@
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.28'/%3E%3C/svg%3E");
     }
 
-    /* =========================
-       HEADER
-       ========================= */
+    /* Header */
     header {
       position: relative;
       z-index: 10;
@@ -140,9 +131,7 @@
 
     nav a:hover { color: var(--cosmic-blue); }
 
-    /* =========================
-       MAIN
-       ========================= */
+    /* Main */
     .container {
       position: relative;
       z-index: 3;
@@ -165,6 +154,20 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    .hero-badge {
+      display: inline-block;
+      padding: 0.6rem 1.5rem;
+      background: rgba(77, 163, 255, 0.1);
+      border: 1px solid rgba(77, 163, 255, 0.3);
+      border-radius: 30px;
+      color: var(--cosmic-blue);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 2rem;
+    }
+
     .hero-title {
       font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: clamp(3rem, 6vw, 5rem);
@@ -184,10 +187,10 @@
       margin: 0 auto 2rem;
     }
 
-    .hero-comparison {
+    .pricing-range {
       display: inline-flex;
-      gap: 2rem;
       align-items: center;
+      gap: 1rem;
       padding: 1.5rem 3rem;
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(255, 255, 255, 0.1);
@@ -196,196 +199,80 @@
       margin-top: 2rem;
     }
 
-    .comparison-item { text-align: center; }
+    .range-value {
+      font-size: 3rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--cosmic-gold), var(--cosmic-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-    .comparison-label {
-      font-size: 0.85rem;
+    .range-label {
+      font-size: 0.9rem;
       color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      margin-bottom: 0.5rem;
     }
 
-    .comparison-value {
-      font-size: 2.5rem;
-      font-weight: 700;
-    }
-
-    .comparison-old {
-      color: var(--cosmic-pink);
-      text-decoration: line-through;
-      opacity: 0.6;
-    }
-
-    .comparison-new { color: var(--cosmic-blue); }
-
-    .comparison-arrow {
-      font-size: 2rem;
-      color: var(--cosmic-gold);
-    }
-
-    /* Pricing cards */
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 2rem;
-      margin-bottom: 4rem;
+    /* Pricing principles */
+    .principles {
+      margin: 6rem 0;
       animation: fadeInUp 1s ease-out 0.2s both;
     }
 
-    .pricing-card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 24px;
-      padding: 3rem 2.5rem;
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      position: relative;
-      overflow: hidden;
-      backdrop-filter: blur(20px);
-    }
-
-    .pricing-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, var(--cosmic-blue), transparent);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-
-    .pricing-card:hover {
-      transform: translateY(-10px);
-      border-color: rgba(77, 163, 255, 0.4);
-      background: rgba(255, 255, 255, 0.05);
-      box-shadow: 0 30px 80px rgba(77, 163, 255, 0.2);
-    }
-
-    .pricing-card:hover::before { opacity: 1; }
-
-    .pricing-card.featured {
-      border: 2px solid var(--cosmic-blue);
-      background: rgba(77, 163, 255, 0.05);
-      transform: scale(1.05);
-    }
-
-    .pricing-card.featured .badge {
-      position: absolute;
-      top: 2rem;
-      right: 2rem;
-      background: linear-gradient(135deg, var(--cosmic-blue), var(--cosmic-purple));
-      color: white;
-      padding: 0.5rem 1.2rem;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .pricing-tier {
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: var(--cosmic-blue);
-      margin-bottom: 1rem;
-      font-weight: 600;
-    }
-
-    .pricing-title {
+    .principles-title {
       font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 2.5rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
+      font-size: 3rem;
+      text-align: center;
+      margin-bottom: 3rem;
       background: linear-gradient(135deg, #ffffff, var(--cosmic-blue));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    .pricing-description {
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-      margin-bottom: 2rem;
-      min-height: 60px;
+    .principles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
-    .pricing-price { margin-bottom: 2rem; }
-
-    .price-amount {
-      font-size: 3.5rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, var(--cosmic-blue), var(--cosmic-purple));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .principle-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      padding: 3rem 2.5rem;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      backdrop-filter: blur(20px);
     }
 
-    .price-period { color: var(--text-muted); font-size: 1rem; }
-    .price-note { color: var(--text-muted); font-size: 0.85rem; margin-top: 0.5rem; }
+    .principle-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(77, 163, 255, 0.4);
+      background: rgba(255, 255, 255, 0.05);
+      box-shadow: 0 30px 80px rgba(77, 163, 255, 0.2);
+    }
 
-    .pricing-cta {
-      width: 100%;
-      padding: 1.2rem;
-      font-size: 1rem;
+    .principle-icon {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .principle-title {
+      font-size: 1.5rem;
       font-weight: 600;
-      border: 2px solid var(--cosmic-blue);
-      border-radius: 12px;
-      background: transparent;
+      margin-bottom: 1rem;
       color: var(--cosmic-blue);
-      cursor: pointer;
-      transition: all 0.3s;
-      font-family: 'Inter', sans-serif;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 2rem;
     }
 
-    .pricing-cta:hover {
-      background: var(--cosmic-blue);
-      color: white;
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(77, 163, 255, 0.3);
-    }
-
-    .pricing-cta.primary {
-      background: linear-gradient(135deg, var(--cosmic-blue), var(--cosmic-purple));
-      border: none;
-      color: white;
-    }
-
-    .pricing-cta.primary:hover {
-      transform: translateY(-2px) scale(1.02);
-      box-shadow: 0 15px 40px rgba(77, 163, 255, 0.4);
-    }
-
-    .pricing-features { list-style: none; }
-
-    .pricing-features li {
-      padding: 0.8rem 0;
-      padding-left: 2rem;
-      position: relative;
+    .principle-description {
       color: var(--text-secondary);
-      font-size: 0.95rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      line-height: 1.7;
     }
 
-    .pricing-features li:last-child { border-bottom: none; }
-
-    .pricing-features li::before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      color: var(--cosmic-blue);
-      font-weight: bold;
-      font-size: 1.2rem;
-    }
-
-    .pricing-features li.disabled { opacity: 0.3; }
-    .pricing-features li.disabled::before { content: "✗"; color: var(--text-muted); }
-
-    /* Comparison table */
-    .comparison-section {
+    /* Examples table */
+    .examples-section {
       margin: 6rem 0;
       animation: fadeInUp 1s ease-out 0.4s both;
     }
@@ -400,7 +287,7 @@
       -webkit-text-fill-color: transparent;
     }
 
-    .comparison-table {
+    .examples-table {
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 20px;
@@ -408,19 +295,19 @@
       backdrop-filter: blur(20px);
     }
 
-    .comparison-table table {
+    .examples-table table {
       width: 100%;
       border-collapse: collapse;
     }
 
-    .comparison-table th,
-    .comparison-table td {
+    .examples-table th,
+    .examples-table td {
       padding: 1.5rem;
       text-align: left;
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
 
-    .comparison-table thead th {
+    .examples-table thead th {
       background: rgba(77, 163, 255, 0.1);
       font-weight: 600;
       color: var(--cosmic-blue);
@@ -429,15 +316,79 @@
       font-size: 0.9rem;
     }
 
-    .comparison-table tbody tr:hover { background: rgba(255, 255, 255, 0.02); }
-    .comparison-table td:first-child { color: var(--text-primary); font-weight: 500; }
-    .comparison-table td:not(:first-child) { text-align: center; color: var(--text-secondary); }
+    .examples-table tbody tr:hover { background: rgba(255, 255, 255, 0.02); }
+    .examples-table td:first-child { color: var(--text-primary); font-weight: 500; }
+    .examples-table td:not(:first-child) { color: var(--text-secondary); }
+
+    .highlight { color: var(--cosmic-gold); font-weight: 700; }
+
+    /* Mizan explanation */
+    .mizan-section {
+      margin: 6rem 0;
+      text-align: center;
+      animation: fadeInUp 1s ease-out 0.6s both;
+    }
+
+    .mizan-content {
+      background: rgba(77, 163, 255, 0.05);
+      border: 1px solid rgba(77, 163, 255, 0.2);
+      border-radius: 24px;
+      padding: 4rem 3rem;
+      max-width: 900px;
+      margin: 0 auto;
+      backdrop-filter: blur(20px);
+    }
+
+    .mizan-icon {
+      font-size: 4rem;
+      margin-bottom: 2rem;
+    }
+
+    .mizan-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, var(--cosmic-gold), var(--cosmic-pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .mizan-description {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    .mizan-factors {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .mizan-factor {
+      text-align: center;
+    }
+
+    .factor-label {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .factor-positive { color: var(--cosmic-blue); }
+    .factor-negative { color: var(--cosmic-pink); }
+
+    .factor-text {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
 
     /* FAQ */
     .faq-section {
       margin: 6rem auto;
       max-width: 900px;
-      animation: fadeInUp 1s ease-out 0.6s both;
+      animation: fadeInUp 1s ease-out 0.8s both;
     }
 
     .faq-item {
@@ -472,7 +423,7 @@
       border: 1px solid rgba(77, 163, 255, 0.2);
       border-radius: 24px;
       margin: 6rem 0;
-      animation: fadeInUp 1s ease-out 0.8s both;
+      animation: fadeInUp 1s ease-out 1s both;
       backdrop-filter: blur(20px);
     }
 
@@ -526,11 +477,8 @@
 
     /* Responsive */
     @media (max-width: 768px) {
-      .pricing-grid { grid-template-columns: 1fr; }
-      .pricing-card.featured { transform: scale(1); }
-      .hero-comparison { flex-direction: column; gap: 1rem; }
-      .comparison-arrow { transform: rotate(90deg); }
-      .comparison-table { overflow-x: auto; }
+      .principles-grid { grid-template-columns: 1fr; }
+      .examples-table { overflow-x: auto; }
       nav { display: none; }
       .logo-center { width: 192vw; opacity: 0.14; }
     }
@@ -542,18 +490,22 @@
 </head>
 
 <body>
-  <!-- Same background stack as home -->
+  <!-- Background -->
   <canvas id="mathBg" aria-hidden="true"></canvas>
-  <img src="logo2 (2).png" alt="" class="logo-center" aria-hidden="true"/>
+  <img src="logonew.png" alt="" class="logo-center" aria-hidden="true"/>
   <div class="fx" aria-hidden="true"></div>
 
   <!-- Header -->
   <header>
+    <a href="index.html" class="brand">
+      <img src="logonew.png" alt="Insaru" class="brand-mark"/>
+      <span class="brand-name">Insaru</span>
+    </a>
     <nav>
       <a href="features.html">Features</a>
       <a href="pricing.html">Pricing</a>
-      <a href="index.html#about">About</a>
-      <a href="index.html#contact">Contact</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
     </nav>
   </header>
 
@@ -561,155 +513,158 @@
   <div class="container">
     <!-- Hero -->
     <section class="hero">
-      <h1 class="hero-title">Simple, Transparent Pricing</h1>
+      <div class="hero-badge">Dynamic Performance Pricing</div>
+      <h1 class="hero-title">Fair Pricing That Rewards You</h1>
       <p class="hero-subtitle">
-        Replace your letting agent and keep 99% of your rent.
-        No hidden fees, no lock-in contracts.
+        The more organized you are and the more you scale, the less you pay. 
+        Never above 1%. Always fair.
       </p>
 
-      <div class="hero-comparison">
-        <div class="comparison-item">
-          <div class="comparison-label">Letting Agents</div>
-          <div class="comparison-value comparison-old">10%</div>
-        </div>
-        <div class="comparison-arrow">→</div>
-        <div class="comparison-item">
-          <div class="comparison-label">Insaru</div>
-          <div class="comparison-value comparison-new">1%</div>
+      <div class="pricing-range">
+        <div>
+          <div class="range-value">0.25%–1%</div>
+          <div class="range-label">+ Stripe</div>
         </div>
       </div>
     </section>
 
-    <!-- Pricing Cards -->
-    <div class="pricing-grid">
-      <!-- Free Tier -->
-      <div class="pricing-card">
-        <div class="pricing-tier">Free Forever</div>
-        <h2 class="pricing-title">Starter</h2>
-        <p class="pricing-description">
-          Perfect for landlords managing their first property. Get organized with our compliance tools.
-        </p>
-        <div class="pricing-price">
-          <span class="price-amount">£0</span>
-          <span class="price-period">/month</span>
-          <p class="price-note">No credit card required</p>
+    <!-- Pricing Principles -->
+    <section class="principles">
+      <h2 class="principles-title">How It Works</h2>
+      <div class="principles-grid">
+        <div class="principle-card">
+          <div class="principle-icon">📊</div>
+          <h3 class="principle-title">Starts at 1%</h3>
+          <p class="principle-description">
+            Your baseline rate is 1% per rent payment. Simple, transparent, and fair.
+          </p>
         </div>
-        <button class="pricing-cta">Start Free</button>
-        <ul class="pricing-features">
-          <li>1 property</li>
-          <li>Document vault (unlimited storage)</li>
-          <li>Certificate expiry tracking</li>
-          <li>Manual rent tracking</li>
-          <li>Evidence retention (6 years)</li>
-          <li>Basic tenancy wizard</li>
-          <li class="disabled">Automated rent collection</li>
-          <li class="disabled">Arrears escalation</li>
-          <li class="disabled">HMRC tax reports</li>
-          <li class="disabled">Legal document generation</li>
-        </ul>
-      </div>
 
-      <!-- Premium Tier -->
-      <div class="pricing-card featured">
-        <span class="badge">Most Popular</span>
-        <div class="pricing-tier">Pay As You Go</div>
-        <h2 class="pricing-title">Premium</h2>
-        <p class="pricing-description">
-          Full-featured property management with automated workflows. Only pay when rent is collected.
-        </p>
-        <div class="pricing-price">
-          <span class="price-amount">1%</span>
-          <span class="price-period">of rent collected</span>
-          <p class="price-note">£12 per £1,200 rent payment</p>
+        <div class="principle-card">
+          <div class="principle-icon">📈</div>
+          <h3 class="principle-title">Scale Up, Pay Less</h3>
+          <p class="principle-description">
+            As your portfolio grows, your effective rate drops automatically. More properties = lower fees.
+          </p>
         </div>
-        <button class="pricing-cta primary">Get Started</button>
-        <ul class="pricing-features">
-          <li>Unlimited properties</li>
-          <li>Everything in Starter, plus:</li>
-          <li>Automated rent collection via Stripe</li>
-          <li>Smart arrears escalation ladder</li>
-          <li>HMRC-ready annual tax reports</li>
-          <li>Legal document generation (Section 8/21)</li>
-          <li>Maintenance workflow automation</li>
-          <li>Deposit scheme integration</li>
-          <li>Communication logging</li>
-          <li>Multi-device sync (optional)</li>
-        </ul>
-      </div>
 
-      <!-- Enterprise Tier -->
-      <div class="pricing-card">
-        <div class="pricing-tier">Custom</div>
-        <h2 class="pricing-title">Portfolio</h2>
-        <p class="pricing-description">
-          For landlords with 10+ properties or letting agencies. Volume discounts and white-label options.
-        </p>
-        <div class="pricing-price">
-          <span class="price-amount">Custom</span>
-          <p class="price-note">Negotiated based on portfolio size</p>
+        <div class="principle-card">
+          <div class="principle-icon">🏠</div>
+          <h3 class="principle-title">Rent Fairness</h3>
+          <p class="principle-description">
+            Higher rent properties get lower percentage rates. Premium areas aren't punished.
+          </p>
         </div>
-        <button class="pricing-cta">Contact Sales</button>
-        <ul class="pricing-features">
-          <li>Everything in Premium, plus:</li>
-          <li>Volume discounts (0.5-0.8%)</li>
-          <li>White-label branding</li>
-          <li>Multi-user access</li>
-          <li>Priority support</li>
-          <li>Custom integrations</li>
-          <li>Dedicated account manager</li>
-          <li>Training & onboarding</li>
-          <li>API access</li>
-          <li>Custom reporting</li>
-        </ul>
-      </div>
-    </div>
 
-    <!-- Comparison Table -->
-    <section class="comparison-section">
-      <h2 class="section-title">How Much Will You Save?</h2>
-      <div class="comparison-table">
+        <div class="principle-card">
+          <div class="principle-icon">⚖️</div>
+          <h3 class="principle-title">Mīzān Balance</h3>
+          <p class="principle-description">
+            Good behavior (compliance, backups, on-time payments) earns discounts. Risky behavior increases costs.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Examples -->
+    <section class="examples-section">
+      <h2 class="section-title">Example Scenarios</h2>
+      <div class="examples-table">
         <table>
           <thead>
             <tr>
               <th>Scenario</th>
-              <th>Letting Agent (10%)</th>
-              <th>Insaru (1%)</th>
-              <th>Annual Savings</th>
+              <th>Effective Rate</th>
+              <th>Monthly Fee</th>
+              <th>vs 10% Agent</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>1 property @ £800/month</td>
-              <td>£960/year</td>
-              <td>£96/year</td>
-              <td style="color: var(--cosmic-gold); font-weight: 700;">£864/year</td>
+              <td>1 property, £800/mo, baseline</td>
+              <td>1.00%</td>
+              <td>£8/mo</td>
+              <td class="highlight">Save £72/mo (90%)</td>
             </tr>
             <tr>
-              <td>1 property @ £1,200/month</td>
-              <td>£1,440/year</td>
-              <td>£144/year</td>
-              <td style="color: var(--cosmic-gold); font-weight: 700;">£1,296/year</td>
+              <td>1 property, £800/mo, good behavior</td>
+              <td>~0.85%</td>
+              <td>£6.80/mo</td>
+              <td class="highlight">Save £73.20/mo (92%)</td>
             </tr>
             <tr>
-              <td>3 properties @ £1,000/month</td>
-              <td>£3,600/year</td>
-              <td>£360/year</td>
-              <td style="color: var(--cosmic-gold); font-weight: 700;">£3,240/year</td>
+              <td>3 properties, £1,000/mo each</td>
+              <td>~0.80%</td>
+              <td>£24/mo total</td>
+              <td class="highlight">Save £276/mo (92%)</td>
             </tr>
             <tr>
-              <td>5 properties @ £1,200/month</td>
-              <td>£7,200/year</td>
-              <td>£720/year</td>
-              <td style="color: var(--cosmic-gold); font-weight: 700;">£6,480/year</td>
+              <td>5 properties, £1,200/mo each</td>
+              <td>~0.65%</td>
+              <td>£39/mo total</td>
+              <td class="highlight">Save £561/mo (93%)</td>
             </tr>
             <tr>
-              <td>10 properties @ £1,000/month</td>
-              <td>£12,000/year</td>
-              <td>£1,200/year</td>
-              <td style="color: var(--cosmic-gold); font-weight: 700;">£10,800/year</td>
+              <td>10 properties, £1,000/mo each</td>
+              <td>~0.50%</td>
+              <td>£50/mo total</td>
+              <td class="highlight">Save £950/mo (95%)</td>
+            </tr>
+            <tr>
+              <td>20 properties, high rent + compliance</td>
+              <td>~0.25% (floor)</td>
+              <td>Variable</td>
+              <td class="highlight">Save 97.5%</td>
             </tr>
           </tbody>
         </table>
+      </div>
+    </section>
+
+    <!-- Mīzān Explanation -->
+    <section class="mizan-section">
+      <div class="mizan-content">
+        <div class="mizan-icon">⚖️</div>
+        <h2 class="mizan-title">Mīzān: Balance & Fairness</h2>
+        <p class="mizan-description">
+          Your pricing adjusts based on measurable behavior. Good landlords pay less. 
+          High-risk behavior costs more. It's mathematically fair.
+        </p>
+
+        <div class="mizan-factors">
+          <div class="mizan-factor">
+            <div class="factor-label factor-positive">+</div>
+            <div class="factor-text">Certificates uploaded</div>
+          </div>
+          <div class="mizan-factor">
+            <div class="factor-label factor-positive">+</div>
+            <div class="factor-text">Backups enabled</div>
+          </div>
+          <div class="mizan-factor">
+            <div class="factor-label factor-positive">+</div>
+            <div class="factor-text">On-time payments</div>
+          </div>
+          <div class="mizan-factor">
+            <div class="factor-label factor-positive">+</div>
+            <div class="factor-text">Low disputes</div>
+          </div>
+          <div class="mizan-factor">
+            <div class="factor-label factor-negative">−</div>
+            <div class="factor-text">Persistent arrears</div>
+          </div>
+          <div class="mizan-factor">
+            <div class="factor-label factor-negative">−</div>
+            <div class="factor-text">Payment failures</div>
+          </div>
+          <div class="mizan-factor">
+            <div class="factor-label factor-negative">−</div>
+            <div class="factor-text">High disputes</div>
+          </div>
+          <div class="mizan-factor">
+            <div class="factor-label factor-negative">−</div>
+            <div class="factor-text">Missing compliance</div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -718,56 +673,56 @@
       <h2 class="section-title">Frequently Asked Questions</h2>
 
       <div class="faq-item">
-        <h3 class="faq-question">Why is Insaru 10x cheaper than letting agents?</h3>
+        <h3 class="faq-question">How does the 0.25%–1% range work?</h3>
         <p class="faq-answer">
-          We're a local-first software platform with zero server costs. Traditional agents charge 10% because they have offices, staff, and overhead. Insaru automates everything while keeping your data encrypted on your device. We only charge when we provide value (automated rent collection).
+          Your rate starts at 1% per rent payment. Three factors adjust it: (1) Portfolio size (more properties = lower rate), (2) Rent amount (higher rent = lower %), and (3) Compliance behavior (organized landlords pay less). The rate never drops below 0.25% or exceeds 1%.
         </p>
       </div>
 
       <div class="faq-item">
-        <h3 class="faq-question">Is the Free tier really free forever?</h3>
+        <h3 class="faq-question">What's the "Mīzān" score?</h3>
         <p class="faq-answer">
-          Yes. The Free tier is completely free, no credit card required. You get unlimited document storage, certificate tracking, and basic compliance tools. You only pay when you want automated rent collection and advanced features.
+          Mīzān (Arabic: balance) measures your compliance and operational quality. Upload certificates on time, maintain backups, keep records clean = better score = lower fees. Payment failures, disputes, missing docs = higher costs. It's automatic and transparent.
         </p>
       </div>
 
       <div class="faq-item">
-        <h3 class="faq-question">How does the 1% fee work?</h3>
+        <h3 class="faq-question">How do I know my exact rate?</h3>
         <p class="faq-answer">
-          We only charge when rent is successfully collected through Stripe. Example: tenant pays £1,200 → Stripe deducts £18 (1.5% processing) → Insaru deducts £12 (1% fee) → you receive £1,170. No rent collected = no fee.
+          Your dashboard shows your current effective rate and Mīzān score in real-time. Every rent payment displays the exact fee breakdown before processing.
         </p>
       </div>
 
       <div class="faq-item">
-        <h3 class="faq-question">Can I switch between plans?</h3>
+        <h3 class="faq-question">What about Stripe fees?</h3>
         <p class="faq-answer">
-          Yes. Start free and upgrade to Premium whenever you want automated rent collection. Downgrade anytime — your data stays in the vault. No lock-in.
+          Stripe charges 1.5% for card processing (industry standard). This is separate from Insaru's 0.25–1% platform fee. Example: £1,200 rent → Stripe takes £18, Insaru takes £3–£12 (depending on your rate), you get £1,170–£1,179.
         </p>
       </div>
 
       <div class="faq-item">
-        <h3 class="faq-question">What about payment processing fees?</h3>
+        <h3 class="faq-question">Is there a free tier?</h3>
         <p class="faq-answer">
-          Stripe charges 1.5% (£18 on £1,200) for card processing. Combined with Insaru’s 1% (£12), total cost is 2.5% (£30). Still materially cheaper than 10% agents (£120).
+          Yes! Free tier includes 1 property, unlimited document storage, certificate tracking, and manual rent tracking. You only pay when you enable automated rent collection.
         </p>
       </div>
 
       <div class="faq-item">
-        <h3 class="faq-question">Is my data secure?</h3>
+        <h3 class="faq-question">How does this compare to agents?</h3>
         <p class="faq-answer">
-          Yes. Insaru uses zero-knowledge encryption. Your data is encrypted on your device before it ever leaves. You control the keys.
+          Agents charge 10% (£120/month on £1,200 rent = £1,440/year). Insaru charges 0.25–1% (£3–£12/month = £36–£144/year). You save 90–97.5% depending on your portfolio and behavior.
         </p>
       </div>
     </section>
 
     <!-- Final CTA -->
     <section class="final-cta">
-      <h2>Ready to Save £1,368/year?</h2>
+      <h2>Start With Fair Pricing</h2>
       <p>
-        Join landlords who are tired of paying 10% to agents.
-        Start managing your properties with Insaru today.
+        Join landlords who value transparency and fairness. 
+        Pay less as you grow and stay organized.
       </p>
-      <button>Start Free Trial</button>
+      <button onclick="window.location.href='index.html#notify'">Get Early Access</button>
     </section>
   </div>
 
@@ -780,231 +735,110 @@
   </footer>
 
   <script>
-    /**
-     * SAME ABSTRACT MATHEMATICAL BACKGROUND AS HOME (index.html)
-     * Logo is NOT drawn as a fractal.
-     * The logo is used ONLY as a low-res mask to influence the flow-field.
-     */
+    // Same mathematical background as index.html
     (function () {
       const canvas = document.getElementById('mathBg');
       const ctx = canvas.getContext('2d', { alpha: false });
-
       const DPR = Math.min(2, window.devicePixelRatio || 1);
       let W = 0, H = 0;
-
       const mouse = { x: 0.5, y: 0.5 };
       window.addEventListener('mousemove', (e) => {
         mouse.x = e.clientX / window.innerWidth;
         mouse.y = e.clientY / window.innerHeight;
       }, { passive: true });
-
       const logo = new Image();
       logo.decoding = 'async';
       logo.crossOrigin = 'anonymous';
-      logo.src = 'logo2 (2).png';
-
-      const map = {
-        ready: false,
-        w: 256,
-        h: 256,
-        data: null,
-        cx: 0, cy: 0, size: 0
-      };
-
+      logo.src = 'logonew.png';
+      const map = { ready: false, w: 256, h: 256, data: null, cx: 0, cy: 0, size: 0 };
       function resize() {
         W = Math.floor(window.innerWidth * DPR);
         H = Math.floor(window.innerHeight * DPR);
-        canvas.width = W;
-        canvas.height = H;
-
-        map.cx = W * 0.5;
-        map.cy = H * 0.5;
+        canvas.width = W; canvas.height = H;
+        map.cx = W * 0.5; map.cy = H * 0.5;
         map.size = Math.min(W, H) * 0.62;
-
         ctx.fillStyle = '#0a0a0f';
         ctx.fillRect(0, 0, W, H);
       }
-      window.addEventListener('resize', resize);
-      resize();
-
+      window.addEventListener('resize', resize); resize();
       function buildAlphaMap() {
         const oc = document.createElement('canvas');
-        oc.width = map.w;
-        oc.height = map.h;
+        oc.width = map.w; oc.height = map.h;
         const octx = oc.getContext('2d');
-
         octx.clearRect(0, 0, map.w, map.h);
-
         const s = Math.min(map.w, map.h) * 0.9;
-        const x = (map.w - s) / 2;
-        const y = (map.h - s) / 2;
+        const x = (map.w - s) / 2; const y = (map.h - s) / 2;
         octx.drawImage(logo, x, y, s, s);
-
         const img = octx.getImageData(0, 0, map.w, map.h).data;
         const a = new Float32Array(map.w * map.h);
-
         for (let i = 0; i < map.w * map.h; i++) {
-          const r = img[i * 4 + 0];
-          const g = img[i * 4 + 1];
-          const b = img[i * 4 + 2];
+          const r = img[i * 4 + 0], g = img[i * 4 + 1], b = img[i * 4 + 2];
           const alpha = img[i * 4 + 3] / 255;
           const lum = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
-          const v = alpha > 0.02 ? alpha : Math.max(0, lum - 0.15);
-          a[i] = v;
+          a[i] = alpha > 0.02 ? alpha : Math.max(0, lum - 0.15);
         }
-
-        map.data = a;
-        map.ready = true;
+        map.data = a; map.ready = true;
       }
-
       logo.onload = () => buildAlphaMap();
       logo.onerror = () => { map.ready = false; };
-
       function sampleMask(px, py) {
         if (!map.ready) return 0;
-
         const half = map.size / 2;
         const lx = (px - (map.cx - half)) / map.size;
         const ly = (py - (map.cy - half)) / map.size;
         if (lx < 0 || lx > 1 || ly < 0 || ly > 1) return 0;
-
         const ix = Math.max(0, Math.min(map.w - 1, (lx * (map.w - 1)) | 0));
         const iy = Math.max(0, Math.min(map.h - 1, (ly * (map.h - 1)) | 0));
         return map.data[iy * map.w + ix];
       }
-
       function noise2(x, y, t) {
-        return Math.sin(1.7 * x + 1.3 * t) * Math.cos(1.9 * y - 1.1 * t)
-             + Math.sin(2.9 * (x + y) + 0.7 * t) * 0.5;
+        return Math.sin(1.7 * x + 1.3 * t) * Math.cos(1.9 * y - 1.1 * t) + Math.sin(2.9 * (x + y) + 0.7 * t) * 0.5;
       }
-
       function field(px, py, t) {
-        const x = (px / W) * 2 - 1;
-        const y = (py / H) * 2 - 1;
-
-        const mx = (mouse.x - 0.5) * 0.18;
-        const my = (mouse.y - 0.5) * 0.18;
-
-        const w1 = noise2(x + mx, y + my, t);
-        const w2 = noise2(x * 1.7 - my, y * 1.7 + mx, t * 0.9);
-
-        const wx = x + 0.18 * w1;
-        const wy = y + 0.18 * w2;
-
+        const x = (px / W) * 2 - 1, y = (py / H) * 2 - 1;
+        const mx = (mouse.x - 0.5) * 0.18, my = (mouse.y - 0.5) * 0.18;
+        const w1 = noise2(x + mx, y + my, t), w2 = noise2(x * 1.7 - my, y * 1.7 + mx, t * 0.9);
+        const wx = x + 0.18 * w1, wy = y + 0.18 * w2;
         const a = noise2(wx, wy, t * 0.7);
-
         const vx = Math.cos(a * Math.PI * 1.2) + 0.35 * Math.sin(w2 * 2.2);
         const vy = Math.sin(a * Math.PI * 1.2) - 0.35 * Math.cos(w1 * 2.2);
-
         return { vx, vy };
       }
-
       const particles = [];
       const isMobile = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
-
-      const COUNT = isMobile ? 1400 : 2400;
-      const SPEED = isMobile ? 0.85 : 1.05;
-
+      const COUNT = isMobile ? 1400 : 2400, SPEED = isMobile ? 0.85 : 1.05;
       function rand(n) { return Math.random() * n; }
-
       function spawn(p) {
         for (let tries = 0; tries < 60; tries++) {
-          const angle = rand(Math.PI * 2);
-          const radius = (0.18 + Math.random() * 0.42) * Math.min(W, H);
-          const x = map.cx + Math.cos(angle) * radius;
-          const y = map.cy + Math.sin(angle) * radius;
-
-          const m = sampleMask(x, y);
-          const ok = map.ready ? (m > 0.06 || Math.random() < 0.20) : true;
-          if (ok) {
-            p.x = x; p.y = y;
-            p.px = x; p.py = y;
-            p.life = 0;
-            p.hue = 200 + Math.random() * 90;
-            p.w = 0.6 + Math.random() * 1.2;
-            return;
-          }
+          const angle = rand(Math.PI * 2), radius = (0.18 + Math.random() * 0.42) * Math.min(W, H);
+          const x = map.cx + Math.cos(angle) * radius, y = map.cy + Math.sin(angle) * radius;
+          const m = sampleMask(x, y), ok = map.ready ? (m > 0.06 || Math.random() < 0.20) : true;
+          if (ok) { p.x = x; p.y = y; p.px = x; p.py = y; p.life = 0; p.hue = 200 + Math.random() * 90; p.w = 0.6 + Math.random() * 1.2; return; }
         }
-
-        p.x = rand(W); p.y = rand(H);
-        p.px = p.x; p.py = p.y;
-        p.life = 0;
-        p.hue = 200 + Math.random() * 90;
-        p.w = 0.6 + Math.random() * 1.2;
+        p.x = rand(W); p.y = rand(H); p.px = p.x; p.py = p.y; p.life = 0; p.hue = 200 + Math.random() * 90; p.w = 0.6 + Math.random() * 1.2;
       }
-
-      for (let i = 0; i < COUNT; i++) {
-        const p = { x: 0, y: 0, px: 0, py: 0, life: 0, hue: 0, w: 1 };
-        spawn(p);
-        p.life = Math.random() * 140;
-        particles.push(p);
-      }
-
-      let last = performance.now();
-      let t0 = performance.now();
-
+      for (let i = 0; i < COUNT; i++) { const p = { x: 0, y: 0, px: 0, py: 0, life: 0, hue: 0, w: 1 }; spawn(p); p.life = Math.random() * 140; particles.push(p); }
+      let last = performance.now(), t0 = performance.now();
       function step(now) {
-        const dt = Math.min(0.033, (now - last) / 1000);
-        last = now;
-        const t = (now - t0) / 1000;
-
-        ctx.save();
-        ctx.globalCompositeOperation = 'source-over';
-        ctx.fillStyle = 'rgba(10,10,15,0.10)';
-        ctx.fillRect(0, 0, W, H);
-        ctx.restore();
-
-        ctx.save();
-        ctx.globalCompositeOperation = 'lighter';
-        ctx.lineCap = 'round';
-
+        const dt = Math.min(0.033, (now - last) / 1000); last = now; const t = (now - t0) / 1000;
+        ctx.save(); ctx.globalCompositeOperation = 'source-over'; ctx.fillStyle = 'rgba(10,10,15,0.10)'; ctx.fillRect(0, 0, W, H); ctx.restore();
+        ctx.save(); ctx.globalCompositeOperation = 'lighter'; ctx.lineCap = 'round';
         for (let i = 0; i < particles.length; i++) {
-          const p = particles[i];
-
-          const m = map.ready ? sampleMask(p.x, p.y) : 0;
-
+          const p = particles[i], m = map.ready ? sampleMask(p.x, p.y) : 0;
           let gx = 0, gy = 0;
-          if (map.ready) {
-            const e = 2.0 * DPR;
-            gx = sampleMask(p.x + e, p.y) - sampleMask(p.x - e, p.y);
-            gy = sampleMask(p.x, p.y + e) - sampleMask(p.x, p.y - e);
-          }
-
-          let tx = -gy, ty = gx;
-          const tl = Math.hypot(tx, ty) || 1;
-          tx /= tl; ty /= tl;
-
-          const f = field(p.x, p.y, t);
-
-          const k = 0.55 + 1.8 * m;
-          const vx = (f.vx * 0.85 + tx * k);
-          const vy = (f.vy * 0.85 + ty * k);
-
-          p.px = p.x; p.py = p.y;
-          p.x += vx * SPEED * (120 * DPR) * dt;
-          p.y += vy * SPEED * (120 * DPR) * dt;
-          p.life += 1;
-
+          if (map.ready) { const e = 2.0 * DPR; gx = sampleMask(p.x + e, p.y) - sampleMask(p.x - e, p.y); gy = sampleMask(p.x, p.y + e) - sampleMask(p.x, p.y - e); }
+          let tx = -gy, ty = gx; const tl = Math.hypot(tx, ty) || 1; tx /= tl; ty /= tl;
+          const f = field(p.x, p.y, t), k = 0.55 + 1.8 * m;
+          const vx = (f.vx * 0.85 + tx * k), vy = (f.vy * 0.85 + ty * k);
+          p.px = p.x; p.py = p.y; p.x += vx * SPEED * (120 * DPR) * dt; p.y += vy * SPEED * (120 * DPR) * dt; p.life += 1;
           const a = 0.06 + 0.18 * Math.min(1, m * 2);
-          ctx.strokeStyle = `hsla(${p.hue}, 95%, 65%, ${a})`;
-          ctx.lineWidth = p.w * DPR;
-          ctx.beginPath();
-          ctx.moveTo(p.px, p.py);
-          ctx.lineTo(p.x, p.y);
-          ctx.stroke();
-
-          if (p.x < -50 || p.x > W + 50 || p.y < -50 || p.y > H + 50 || p.life > 320) {
-            spawn(p);
-          }
+          ctx.strokeStyle = `hsla(${p.hue}, 95%, 65%, ${a})`; ctx.lineWidth = p.w * DPR;
+          ctx.beginPath(); ctx.moveTo(p.px, p.py); ctx.lineTo(p.x, p.y); ctx.stroke();
+          if (p.x < -50 || p.x > W + 50 || p.y < -50 || p.y > H + 50 || p.life > 320) spawn(p);
         }
-
-        ctx.restore();
-        requestAnimationFrame(step);
+        ctx.restore(); requestAnimationFrame(step);
       }
-
-      ctx.fillStyle = '#0a0a0f';
-      ctx.fillRect(0, 0, W, H);
-      requestAnimationFrame(step);
+      ctx.fillStyle = '#0a0a0f'; ctx.fillRect(0, 0, W, H); requestAnimationFrame(step);
     })();
   </script>
 </body>
