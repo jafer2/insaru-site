@@ -6,499 +6,16 @@
   <title>Features - Insaru Property Management</title>
   <meta name="description" content="Zero-knowledge encryption, automated compliance, rent collection, arrears escalation, legal document generation, and HMRC tax reports. Enterprise-grade property management." />
 
+  <meta property="og:title" content="Features – Insaru"/>
+  <meta property="og:description" content="Everything you need to replace your letting agent. Compliance, automation, security, and reporting."/>
+  <meta property="og:image" content="logonew.png"/>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    :root {
-      --cosmic-black: #0a0a0f;
-      --cosmic-purple: #6b4ce6;
-      --cosmic-blue: #4da3ff;
-      --cosmic-pink: #ff6b9d;
-      --cosmic-gold: #ffd700;
-      --text-primary: #ffffff;
-      --text-secondary: #b8b8c8;
-      --text-muted: #6e6e7e;
-    }
-
-    html, body { height: 100%; }
-
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--cosmic-black);
-      color: var(--text-primary);
-      overflow-x: hidden;
-      line-height: 1.6;
-      position: relative;
-      min-height: 100vh;
-    }
-
-    /* =========================
-       BACKGROUND (same as Home)
-       ========================= */
-    #mathBg {
-      position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      display: block;
-      z-index: 0;
-    }
-
-    /* Static large centered logo (same as Home) */
-    .logo-center {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: min(1200px, 88vw);
-      opacity: 0.16;
-      filter: drop-shadow(0 0 70px rgba(107, 76, 230, 0.35));
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    /* Vignette + light grain (same as Home) */
-    .fx {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 2;
-      background:
-        radial-gradient(60% 55% at 50% 40%, rgba(0,0,0,0) 0%, rgba(0,0,0,.32) 68%, rgba(0,0,0,.70) 100%),
-        linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.08) 45%, rgba(0,0,0,.62) 100%);
-    }
-    .fx::after{
-      content:"";
-      position:absolute;
-      inset:-40px;
-      opacity:.06;
-      mix-blend-mode: overlay;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.28'/%3E%3C/svg%3E");
-    }
-
-    /* Header */
-    header {justify-content: center;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      padding: 1.5rem 2rem;
-
-      /* allow the background to still be visible */
-      background: rgba(10, 10, 15, 0.65);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
-    .header-content {
-      max-width: 1400px;
-      margin: 0 auto;
-      display: table;
-      justify-content: space-between;
-      align-items: center;
-      position: relative;
-      z-index: 3;
-    }
-
-    .logo-link {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 1.8rem;
-      font-weight: 300;
-      background: linear-gradient(135deg, #4da3ff, #ffffff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-decoration: none;
-      transition: opacity 0.3s;
-    }
-    .logo-link:hover { opacity: 0.8; }
-
-    nav {
-      display: flex;
-      gap: 2.5rem;
-      align-items: center;
-    }
-    nav a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-size: 0.95rem;
-      transition: color 0.3s;
-      font-weight: 500;
-    }
-    nav a:hover, nav a.active { color: var(--cosmic-blue); }
-
-    /* Main container */
-    .container {
-      position: relative;
-      z-index: 3; /* sits above bg + logo + fx */
-      padding: 4rem 2rem;
-      max-width: 1400px;
-      margin: 0 auto;
-
-      /* subtle inner veil like Home so text reads */
-      background: radial-gradient(circle at center,
-        transparent 0%,
-        rgba(10, 10, 15, 0.18) 60%,
-        rgba(10, 10, 15, 0.60) 100%
-      );
-    }
-
-    /* Hero section */
-    .hero {
-      text-align: center;
-      margin-bottom: 8rem;
-      animation: fadeInUp 1s ease-out;
-    }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .hero-badge {
-      display: inline-block;
-      padding: 0.6rem 1.5rem;
-      background: rgba(77, 163, 255, 0.1);
-      border: 1px solid rgba(77, 163, 255, 0.3);
-      border-radius: 30px;
-      color: var(--cosmic-blue);
-      font-size: 0.85rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 2rem;
-    }
-
-    .hero-title {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: clamp(3rem, 6vw, 5rem);
-      font-weight: 300;
-      letter-spacing: -0.02em;
-      margin-bottom: 1.5rem;
-      background: linear-gradient(135deg, #ffffff 0%, var(--cosmic-blue) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      line-height: 1.1;
-    }
-
-    .hero-subtitle {
-      font-size: clamp(1.1rem, 2vw, 1.4rem);
-      color: var(--text-secondary);
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    /* Feature categories */
-    .category { margin-bottom: 8rem; }
-
-    .category-header {
-      text-align: center;
-      margin-bottom: 4rem;
-      animation: fadeInUp 1s ease-out;
-    }
-
-    .category-icon { font-size: 3rem; margin-bottom: 1rem; }
-
-    .category-title {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: clamp(2.5rem, 5vw, 3.5rem);
-      font-weight: 600;
-      background: linear-gradient(135deg, var(--cosmic-blue), var(--cosmic-purple));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 1rem;
-    }
-
-    .category-description {
-      font-size: 1.1rem;
-      color: var(--text-secondary);
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    /* Feature grid */
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 2rem;
-      animation: fadeInUp 1s ease-out 0.2s both;
-    }
-
-    .feature-card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 24px;
-      padding: 3rem 2.5rem;
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      position: relative;
-      overflow: hidden;
-      backdrop-filter: blur(10px);
-    }
-
-    .feature-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-8px);
-      border-color: rgba(77, 163, 255, 0.4);
-      background: rgba(255, 255, 255, 0.05);
-      box-shadow: 0 30px 80px rgba(77, 163, 255, 0.2);
-    }
-
-    .feature-card:hover::before { opacity: 1; }
-
-    .feature-icon {
-      width: 60px;
-      height: 60px;
-      border-radius: 16px;
-      background: linear-gradient(135deg, var(--accent-color), var(--accent-color-2));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.8rem;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 10px 30px rgba(77, 163, 255, 0.2);
-    }
-
-    .feature-title {
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-      color: var(--text-primary);
-    }
-
-    .feature-description {
-      color: var(--text-secondary);
-      line-height: 1.7;
-      margin-bottom: 1.5rem;
-    }
-
-    .feature-list { list-style: none; padding: 0; }
-    .feature-list li {
-      padding: 0.6rem 0;
-      padding-left: 1.8rem;
-      position: relative;
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-    }
-    .feature-list li::before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      color: var(--accent-color);
-      font-weight: bold;
-      font-size: 1.1rem;
-    }
-
-    /* Accent color variations */
-    .security-features .feature-card { --accent-color: #4da3ff; --accent-color-2: #6b4ce6; }
-    .compliance-features .feature-card { --accent-color: #6b4ce6; --accent-color-2: #ff6b9d; }
-    .automation-features .feature-card { --accent-color: #ff6b9d; --accent-color-2: #ffd700; }
-    .financial-features .feature-card { --accent-color: #ffd700; --accent-color-2: #4da3ff; }
-
-    /* Large feature showcase */
-    .showcase {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 24px;
-      padding: 4rem 3rem;
-      margin: 6rem 0;
-      text-align: center;
-      animation: fadeInUp 1s ease-out 0.4s both;
-      position: relative;
-      overflow: hidden;
-      backdrop-filter: blur(10px);
-    }
-
-    .showcase::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(77, 163, 255, 0.1) 0%, transparent 50%);
-      animation: rotate 30s linear infinite;
-    }
-
-    @keyframes rotate {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    .showcase-content { position: relative; z-index: 1; }
-    .showcase-icon { font-size: 4rem; margin-bottom: 2rem; }
-
-    .showcase-title {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      font-weight: 600;
-      margin-bottom: 1.5rem;
-      background: linear-gradient(135deg, var(--cosmic-gold), var(--cosmic-pink));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .showcase-description {
-      font-size: 1.2rem;
-      color: var(--text-secondary);
-      max-width: 700px;
-      margin: 0 auto 2rem;
-      line-height: 1.8;
-    }
-
-    .showcase-stats {
-      display: flex;
-      justify-content: center;
-      gap: 3rem;
-      flex-wrap: wrap;
-      margin-top: 3rem;
-    }
-
-    .showcase-stat { text-align: center; }
-
-    .stat-value {
-      font-size: 3rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, var(--cosmic-blue), var(--cosmic-purple));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-
-    .stat-label {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    /* CTA Section */
-    .cta-section {
-      text-align: center;
-      padding: 4rem 2rem;
-      margin: 6rem 0;
-      animation: fadeInUp 1s ease-out 0.6s both;
-    }
-
-    .cta-title {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 3rem;
-      margin-bottom: 1.5rem;
-      background: linear-gradient(135deg, #ffffff, var(--cosmic-blue));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .cta-description {
-      font-size: 1.2rem;
-      color: var(--text-secondary);
-      margin-bottom: 2rem;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .cta-buttons {
-      display: flex;
-      gap: 1.5rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      padding: 1.2rem 3rem;
-      font-size: 1.05rem;
-      font-weight: 600;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: all 0.3s;
-      text-decoration: none;
-      display: inline-block;
-      font-family: 'Inter', sans-serif;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--cosmic-blue), var(--cosmic-purple));
-      border: none;
-      color: white;
-    }
-    .btn-primary:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 15px 50px rgba(77, 163, 255, 0.4);
-    }
-
-    .btn-secondary {
-      background: transparent;
-      border: 2px solid var(--cosmic-blue);
-      color: var(--cosmic-blue);
-    }
-    .btn-secondary:hover {
-      background: var(--cosmic-blue);
-      color: white;
-      transform: translateY(-2px);
-    }
-
-    /* Footer */
-    footer {
-      position: relative;
-      z-index: 3;
-      text-align: center;
-      padding: 3rem 2rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      color: var(--text-muted);
-      font-size: 0.9rem;
-    }
-
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 2.5rem;
-      margin-bottom: 1.5rem;
-      flex-wrap: wrap;
-    }
-    .footer-links a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    .footer-links a:hover { color: var(--cosmic-blue); }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .features-grid { grid-template-columns: 1fr; }
-      nav { display: none; }
-      .showcase-stats { flex-direction: column; gap: 2rem; }
-      .cta-buttons { flex-direction: column; }
-      .btn { width: 100%; }
-      .logo-center { width: 192vw; opacity: 0.14; }
-    }
-
-    /* Scroll reveal animation */
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    }
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      #mathBg { display: none; }
-    }    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
       --cosmic-black: #0a0a0f;
@@ -564,7 +81,8 @@
     }
 
     /* Header */
-    header {justify-content: center;
+    header {
+      justify-content: center;
       position: relative;
       z-index: 10;
       padding: 2rem;
@@ -674,34 +192,7 @@
       margin: 0 auto 2rem;
     }
 
-    .pricing-range {
-      display: inline-flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 1.5rem 3rem;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      backdrop-filter: blur(20px);
-      margin-top: 2rem;
-    }
-
-    .range-value {
-      font-size: 3rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, var(--cosmic-gold), var(--cosmic-blue));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .range-label {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
-
-    /* Pricing principles */
+    /* Feature categories (using same structure as pricing "principles") */
     .principles {
       margin: 6rem 0;
       animation: fadeInUp 1s ease-out 0.2s both;
@@ -756,60 +247,32 @@
     .principle-description {
       color: var(--text-secondary);
       line-height: 1.7;
+      margin-bottom: 1.5rem;
     }
 
-    /* Examples table */
-    .examples-section {
-      margin: 6rem 0;
-      animation: fadeInUp 1s ease-out 0.4s both;
+    .principle-list {
+      list-style: none;
+      padding: 0;
     }
 
-    .section-title {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 3rem;
-      text-align: center;
-      margin-bottom: 3rem;
-      background: linear-gradient(135deg, #ffffff, var(--cosmic-blue));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .principle-list li {
+      padding: 0.6rem 0;
+      padding-left: 1.8rem;
+      position: relative;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
     }
 
-    .examples-table {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      overflow: hidden;
-      backdrop-filter: blur(20px);
-    }
-
-    .examples-table table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-
-    .examples-table th,
-    .examples-table td {
-      padding: 1.5rem;
-      text-align: left;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .examples-table thead th {
-      background: rgba(77, 163, 255, 0.1);
-      font-weight: 600;
+    .principle-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
       color: var(--cosmic-blue);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      font-size: 0.9rem;
+      font-weight: bold;
+      font-size: 1.1rem;
     }
 
-    .examples-table tbody tr:hover { background: rgba(255, 255, 255, 0.02); }
-    .examples-table td:first-child { color: var(--text-primary); font-weight: 500; }
-    .examples-table td:not(:first-child) { color: var(--text-secondary); }
-
-    .highlight { color: var(--cosmic-gold); font-weight: 700; }
-
-    /* Mizan explanation */
+    /* Showcase section (same as pricing mizan) */
     .mizan-section {
       margin: 6rem 0;
       text-align: center;
@@ -847,60 +310,45 @@
       margin-bottom: 2rem;
     }
 
-    .mizan-factors {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
+    .mizan-stats {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
       margin-top: 3rem;
     }
 
-    .mizan-factor {
+    .mizan-stat {
       text-align: center;
     }
 
-    .factor-label {
-      font-size: 2rem;
+    .stat-value {
+      font-size: 3rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--cosmic-blue), var(--cosmic-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: block;
       margin-bottom: 0.5rem;
     }
 
-    .factor-positive { color: var(--cosmic-blue); }
-    .factor-negative { color: var(--cosmic-pink); }
-
-    .factor-text {
+    .stat-label {
+      color: var(--text-muted);
       font-size: 0.9rem;
-      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
-    /* FAQ */
-    .faq-section {
-      margin: 6rem auto;
-      max-width: 900px;
-      animation: fadeInUp 1s ease-out 0.8s both;
+    /* Section title (reused) */
+    .section-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 3rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      background: linear-gradient(135deg, #ffffff, var(--cosmic-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
-
-    .faq-item {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 16px;
-      padding: 2rem;
-      margin-bottom: 1.5rem;
-      transition: all 0.3s;
-      backdrop-filter: blur(20px);
-    }
-
-    .faq-item:hover {
-      background: rgba(255, 255, 255, 0.05);
-      border-color: rgba(77, 163, 255, 0.3);
-    }
-
-    .faq-question {
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: var(--text-primary);
-      margin-bottom: 1rem;
-    }
-
-    .faq-answer { color: var(--text-secondary); line-height: 1.7; }
 
     /* CTA */
     .final-cta {
@@ -965,9 +413,9 @@
     /* Responsive */
     @media (max-width: 768px) {
       .principles-grid { grid-template-columns: 1fr; }
-      .examples-table { overflow-x: auto; }
       nav { display: none; }
       .logo-center { width: 192vw; opacity: 0.14; }
+      .mizan-stats { flex-direction: column; gap: 2rem; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -979,15 +427,14 @@
 <body>
   <!-- Background -->
   <canvas id="mathBg" aria-hidden="true"></canvas>
-  <img src="logo2 (2).png" alt="" class="logo-center" aria-hidden="true"/>
+  <img src="logonew.png" alt="" class="logo-center" aria-hidden="true"/>
   <div class="fx" aria-hidden="true"></div>
 
   <!-- Header -->
   <header>
-
     <nav>
       <a href="index.html">Home</a>
-      <a href="features.html">Features</a>
+      <a href="features.html" class="active">Features</a>
       <a href="pricing.html">Pricing</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
@@ -1001,30 +448,22 @@
       <div class="hero-badge">Complete Property Management</div>
       <h1 class="hero-title">Everything You Need.<br/>Nothing You Don't.</h1>
       <p class="hero-subtitle">
-        Replace expensive letting agents with enterprise-grade software.
+        Replace expensive letting agents with enterprise-grade software. 
         Automated compliance, rent collection, legal protection, and HMRC reporting — all in one place.
       </p>
     </section>
 
     <!-- Security & Privacy -->
-    <section class="category security-features">
-      <div class="category-header reveal">
-        <div class="category-icon">🔐</div>
-        <h2 class="category-title">Security & Privacy</h2>
-        <p class="category-description">
-          Zero-knowledge encryption means we literally cannot access your data.
-          Your property details, rent amounts, and tenant information stay on your device.
-        </p>
-      </div>
-
-      <div class="features-grid">
-        <div class="feature-card reveal">
-          <div class="feature-icon">🛡️</div>
-          <h3 class="feature-title">Zero-Knowledge Encryption</h3>
-          <p class="feature-description">
+    <section class="principles">
+      <h2 class="principles-title">Security & Privacy</h2>
+      <div class="principles-grid">
+        <div class="principle-card">
+          <div class="principle-icon">🛡️</div>
+          <h3 class="principle-title">Zero-Knowledge Encryption</h3>
+          <p class="principle-description">
             Military-grade AES-256 encryption on your device. We can't read your data even if we wanted to.
           </p>
-          <ul class="feature-list">
+          <ul class="principle-list">
             <li>End-to-end encryption</li>
             <li>Local-first architecture</li>
             <li>No cloud servers storing your data</li>
@@ -1032,13 +471,13 @@
           </ul>
         </div>
 
-        <div class="feature-card reveal">
-          <div class="feature-icon">📦</div>
-          <h3 class="feature-title">Encrypted Document Vault</h3>
-          <p class="feature-description">
+        <div class="principle-card">
+          <div class="principle-icon">📦</div>
+          <h3 class="principle-title">Encrypted Document Vault</h3>
+          <p class="principle-description">
             Store unlimited documents with tamper-proof verification and 6-year retention.
           </p>
-          <ul class="feature-list">
+          <ul class="principle-list">
             <li>Unlimited storage capacity</li>
             <li>SHA-256 file verification</li>
             <li>WORM (Write Once Read Many)</li>
@@ -1046,13 +485,13 @@
           </ul>
         </div>
 
-        <div class="feature-card reveal">
-          <div class="feature-icon">🔄</div>
-          <h3 class="feature-title">Secure Multi-Device Sync</h3>
-          <p class="feature-description">
+        <div class="principle-card">
+          <div class="principle-icon">🔄</div>
+          <h3 class="principle-title">Secure Multi-Device Sync</h3>
+          <p class="principle-description">
             Optional encrypted sync between your devices using your own email. No Insaru servers involved.
           </p>
-          <ul class="feature-list">
+          <ul class="principle-list">
             <li>Device-to-device encryption</li>
             <li>Uses your Gmail/Outlook</li>
             <li>No sync servers needed</li>
@@ -1063,24 +502,16 @@
     </section>
 
     <!-- Compliance & Legal -->
-    <section class="category compliance-features">
-      <div class="category-header reveal">
-        <div class="category-icon">⚖️</div>
-        <h2 class="category-title">Compliance & Legal Protection</h2>
-        <p class="category-description">
-          Forced compliance workflows prevent costly legal mistakes.
-          Insaru won't let you skip required steps — protecting you from tribunals.
-        </p>
-      </div>
-
-      <div class="features-grid">
-        <div class="feature-card reveal">
-          <div class="feature-icon">📋</div>
-          <h3 class="feature-title">Strict-Path Tenancy Wizard</h3>
-          <p class="feature-description">
+    <section class="principles">
+      <h2 class="principles-title">Compliance & Legal Protection</h2>
+      <div class="principles-grid">
+        <div class="principle-card">
+          <div class="principle-icon">📋</div>
+          <h3 class="principle-title">Strict-Path Tenancy Wizard</h3>
+          <p class="principle-description">
             Step-by-step onboarding that enforces UK law. Can't activate tenancy without all compliance docs.
           </p>
-          <ul class="feature-list">
+          <ul class="principle-list">
             <li>Upload & verify tenancy agreement</li>
             <li>Register deposit (mandatory)</li>
             <li>Upload Gas/EPC/EICR certificates</li>
@@ -1089,13 +520,13 @@
           </ul>
         </div>
 
-        <div class="feature-card reveal">
-          <div class="feature-icon">📝</div>
-          <h3 class="feature-title">Legal Document Generation</h3>
-          <p class="feature-description">
+        <div class="principle-card">
+          <div class="principle-icon">📝</div>
+          <h3 class="principle-title">Legal Document Generation</h3>
+          <p class="principle-description">
             Generate Section 8, Section 21, and pre-action letters with automatic validation.
           </p>
-          <ul class="feature-list">
+          <ul class="principle-list">
             <li>Section 8 & 21 notices</li>
             <li>Pre-action protocol letters</li>
             <li>Possession claim forms</li>
@@ -1104,13 +535,13 @@
           </ul>
         </div>
 
-        <div class="feature-card reveal">
-          <div class="feature-icon">🔔</div>
-          <h3 class="feature-title">Certificate Expiry Tracking</h3>
-          <p class="feature-description">
+        <div class="principle-card">
+          <div class="principle-icon">🔔</div>
+          <h3 class="principle-title">Certificate Expiry Tracking</h3>
+          <p class="principle-description">
             Never miss a renewal deadline. Automatic alerts for Gas Safety, EICR, and EPC.
           </p>
-          <ul class="feature-list">
+          <ul class="principle-list">
             <li>90-day advance warnings</li>
             <li>30-day urgent reminders</li>
             <li>Overdue notifications</li>
@@ -1121,24 +552,24 @@
     </section>
 
     <!-- Automation Showcase -->
-    <section class="showcase reveal">
-      <div class="showcase-content">
-        <div class="showcase-icon">⚡</div>
-        <h2 class="showcase-title">Automation That Just Works</h2>
-        <p class="showcase-description">
-          Stop chasing rent manually. Insaru automates rent collection, arrears escalation,
+    <section class="mizan-section">
+      <div class="mizan-content">
+        <div class="mizan-icon">⚡</div>
+        <h2 class="mizan-title">Automation That Just Works</h2>
+        <p class="mizan-description">
+          Stop chasing rent manually. Insaru automates rent collection, arrears escalation, 
           and maintenance workflows — while keeping you in control with approval gates.
         </p>
-        <div class="showcase-stats">
-          <div class="showcase-stat">
+        <div class="mizan-stats">
+          <div class="mizan-stat">
             <span class="stat-value">100%</span>
             <span class="stat-label">Automated Rent Collection</span>
           </div>
-          <div class="showcase-stat">
+          <div class="mizan-stat">
             <span class="stat-value">5-Stage</span>
             <span class="stat-label">Arrears Escalation</span>
           </div>
-          <div class="showcase-stat">
+          <div class="mizan-stat">
             <span class="stat-value">0</span>
             <span class="stat-label">Manual Tracking</span>
           </div>
@@ -1146,25 +577,17 @@
       </div>
     </section>
 
-    <!-- Automation Features -->
-    <section class="category automation-features">
-      <div class="category-header reveal">
-        <div class="category-icon">🤖</div>
-        <h2 class="category-title">Automation & Workflows</h2>
-        <p class="category-description">
-          Hands-off management that works for you. Automated reminders, escalations,
-          and workflows with human approval gates where it matters.
-        </p>
-      </div>
-
-      <div class="features-grid">
-        <div class="feature-card reveal">
-          <div class="feature-icon">💰</div>
-          <h3 class="feature-title">Automated Rent Collection</h3>
-          <p class="feature-description">
-            Tenants pay via Stripe. Rent recorded automatically. You receive funds directly minus our 1% fee.
+    <!-- Automation & Workflows -->
+    <section class="principles">
+      <h2 class="principles-title">Automation & Workflows</h2>
+      <div class="principles-grid">
+        <div class="principle-card">
+          <div class="principle-icon">💰</div>
+          <h3 class="principle-title">Automated Rent Collection</h3>
+          <p class="principle-description">
+            Tenants pay via Stripe. Rent recorded automatically. You receive funds directly minus platform fee.
           </p>
-          <ul class="feature-list">
+          <ul class="principle-list">
             <li>Stripe payment links</li>
             <li>Automatic ledger recording</li>
             <li>Instant payment notifications</li>
@@ -1172,13 +595,13 @@
           </ul>
         </div>
 
-        <div class="feature-card reveal">
-          <div class="feature-icon">📈</div>
-          <h3 class="feature-title">Smart Arrears Escalation</h3>
-          <p class="feature-description">
+        <div class="principle-card">
+          <div class="principle-icon">📈</div>
+          <h3 class="principle-title">Smart Arrears Escalation</h3>
+          <p class="principle-description">
             5-stage timeline: soft reminder → firm reminder → pre-action → legal notice → court forms.
           </p>
-          <ul class="feature-list">
+          <ul class="principle-list">
             <li>Day 3: Soft "rent overdue" reminder</li>
             <li>Day 7: Firm payment demand</li>
             <li>Day 14: Pre-action warning</li>
@@ -1187,13 +610,13 @@
           </ul>
         </div>
 
-        <div class="feature-card reveal">
-          <div class="feature-icon">🔧</div>
-          <h3 class="feature-title">Maintenance Workflow</h3>
-          <p class="feature-description">
+        <div class="principle-card">
+          <div class="principle-icon">🔧</div>
+          <h3 class="principle-title">Maintenance Workflow</h3>
+          <p class="principle-description">
             Tenant reports → Landlord approves → Contractor quotes → Evidence captured → Payment processed.
           </p>
-          <ul class="feature-list">
+          <ul class="principle-list">
             <li>24-hour access notice (UK law)</li>
             <li>Before/after photo capture</li>
             <li>Invoice & payment tracking</li>
@@ -1204,25 +627,17 @@
       </div>
     </section>
 
-    <!-- Financial & Reporting -->
-    <section class="category financial-features">
-      <div class="category-header reveal">
-        <div class="category-icon">📊</div>
-        <h2 class="category-title">Financial & Tax Reporting</h2>
-        <p class="category-description">
-          HMRC-ready reports at the click of a button. Income, expenses, and evidence bundle
-          pre-filled for your SA105 tax return.
-        </p>
-      </div>
-
-      <div class="features-grid">
-        <div class="feature-card reveal">
-          <div class="feature-icon">💵</div>
-          <h3 class="feature-title">Income & Expense Tracking</h3>
-          <p class="feature-description">
+    <!-- Financial & Tax Reporting -->
+    <section class="principles">
+      <h2 class="principles-title">Financial & Tax Reporting</h2>
+      <div class="principles-grid">
+        <div class="principle-card">
+          <div class="principle-icon">💵</div>
+          <h3 class="principle-title">Income & Expense Tracking</h3>
+          <p class="principle-description">
             Every rent payment and maintenance cost automatically categorized and tracked.
           </p>
-          <ul class="feature-list">
+          <ul class="principle-list">
             <li>Automatic rent recording</li>
             <li>Expense categorization</li>
             <li>Tax-deductible marking</li>
@@ -1230,13 +645,13 @@
           </ul>
         </div>
 
-        <div class="feature-card reveal">
-          <div class="feature-icon">🏦</div>
-          <h3 class="feature-title">HMRC Annual Tax Export</h3>
-          <p class="feature-description">
+        <div class="principle-card">
+          <div class="principle-icon">🏦</div>
+          <h3 class="principle-title">HMRC Annual Tax Export</h3>
+          <p class="principle-description">
             Generate SA105-ready reports with income summary, expense breakdown, and evidence bundle.
           </p>
-          <ul class="feature-list">
+          <ul class="principle-list">
             <li>Income summary (by property)</li>
             <li>Expense breakdown (categorized)</li>
             <li>Profit/loss statement</li>
@@ -1245,13 +660,13 @@
           </ul>
         </div>
 
-        <div class="feature-card reveal">
-          <div class="feature-icon">📑</div>
-          <h3 class="feature-title">Evidence & Audit Trail</h3>
-          <p class="feature-description">
+        <div class="principle-card">
+          <div class="principle-icon">📑</div>
+          <h3 class="principle-title">Evidence & Audit Trail</h3>
+          <p class="principle-description">
             Every action logged. Complete audit trail for HMRC enquiries or tribunal disputes.
           </p>
-          <ul class="feature-list">
+          <ul class="principle-list">
             <li>Immutable transaction ledger</li>
             <li>Timestamped actions</li>
             <li>Communication history</li>
@@ -1263,28 +678,18 @@
     </section>
 
     <!-- Final CTA -->
-    <section class="cta-section">
-      <h2 class="cta-title">Ready to Replace Your Agent?</h2>
-      <p class="cta-description">
-        Start managing your properties with enterprise-grade tools.
+    <section class="final-cta">
+      <h2>Ready to Replace Your Agent?</h2>
+      <p>
+        Start managing your properties with enterprise-grade tools. 
         Free forever for basic features, only pay when we add value.
       </p>
-      <div class="cta-buttons">
-        <a href="pricing.html" class="btn btn-primary">View Pricing</a>
-        <a href="index.html#notify" class="btn btn-secondary">Get Early Access</a>
-      </div>
+      <button onclick="window.location.href='pricing.html'">View Pricing</button>
     </section>
   </div>
 
   <!-- Footer -->
   <footer>
-    <div class="footer-links">
-      <a href="index.html">Home</a>
-      <a href="features.html">Features</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </div>
     <p>© 2025 Insaru. All rights reserved.</p>
     <p style="margin-top: 0.5rem; font-size: 0.8rem;">
       Local-first property management. Your data, your device, your control.
@@ -1292,244 +697,111 @@
   </footer>
 
   <script>
-    /**
-     * FLOW FIELD BACKGROUND (same as Home)
-     */
+    // Same mathematical background as pricing page
     (function () {
       const canvas = document.getElementById('mathBg');
       const ctx = canvas.getContext('2d', { alpha: false });
-
       const DPR = Math.min(2, window.devicePixelRatio || 1);
       let W = 0, H = 0;
-
       const mouse = { x: 0.5, y: 0.5 };
       window.addEventListener('mousemove', (e) => {
         mouse.x = e.clientX / window.innerWidth;
         mouse.y = e.clientY / window.innerHeight;
       }, { passive: true });
-
       const logo = new Image();
       logo.decoding = 'async';
       logo.crossOrigin = 'anonymous';
-      logo.src = 'logo2 (2).png';
-
-      const map = {
-        ready: false,
-        w: 256,
-        h: 256,
-        data: null,
-        cx: 0, cy: 0, size: 0
-      };
-
+      logo.src = 'logonew.png';
+      const map = { ready: false, w: 256, h: 256, data: null, cx: 0, cy: 0, size: 0 };
       function resize() {
         W = Math.floor(window.innerWidth * DPR);
         H = Math.floor(window.innerHeight * DPR);
-        canvas.width = W;
-        canvas.height = H;
-
-        map.cx = W * 0.5;
-        map.cy = H * 0.5;
+        canvas.width = W; canvas.height = H;
+        map.cx = W * 0.5; map.cy = H * 0.5;
         map.size = Math.min(W, H) * 0.62;
-
         ctx.fillStyle = '#0a0a0f';
         ctx.fillRect(0, 0, W, H);
       }
-      window.addEventListener('resize', resize);
-      resize();
-
+      window.addEventListener('resize', resize); resize();
       function buildAlphaMap() {
         const oc = document.createElement('canvas');
-        oc.width = map.w;
-        oc.height = map.h;
+        oc.width = map.w; oc.height = map.h;
         const octx = oc.getContext('2d');
-
         octx.clearRect(0, 0, map.w, map.h);
-
         const s = Math.min(map.w, map.h) * 0.9;
-        const x = (map.w - s) / 2;
-        const y = (map.h - s) / 2;
+        const x = (map.w - s) / 2; const y = (map.h - s) / 2;
         octx.drawImage(logo, x, y, s, s);
-
         const img = octx.getImageData(0, 0, map.w, map.h).data;
         const a = new Float32Array(map.w * map.h);
-
         for (let i = 0; i < map.w * map.h; i++) {
-          const r = img[i * 4 + 0];
-          const g = img[i * 4 + 1];
-          const b = img[i * 4 + 2];
+          const r = img[i * 4 + 0], g = img[i * 4 + 1], b = img[i * 4 + 2];
           const alpha = img[i * 4 + 3] / 255;
-
           const lum = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
-          const v = alpha > 0.02 ? alpha : Math.max(0, lum - 0.15);
-          a[i] = v;
+          a[i] = alpha > 0.02 ? alpha : Math.max(0, lum - 0.15);
         }
-
-        map.data = a;
-        map.ready = true;
+        map.data = a; map.ready = true;
       }
-
       logo.onload = () => buildAlphaMap();
       logo.onerror = () => { map.ready = false; };
-
       function sampleMask(px, py) {
         if (!map.ready) return 0;
-
         const half = map.size / 2;
         const lx = (px - (map.cx - half)) / map.size;
         const ly = (py - (map.cy - half)) / map.size;
         if (lx < 0 || lx > 1 || ly < 0 || ly > 1) return 0;
-
         const ix = Math.max(0, Math.min(map.w - 1, (lx * (map.w - 1)) | 0));
         const iy = Math.max(0, Math.min(map.h - 1, (ly * (map.h - 1)) | 0));
         return map.data[iy * map.w + ix];
       }
-
       function noise2(x, y, t) {
-        return Math.sin(1.7 * x + 1.3 * t) * Math.cos(1.9 * y - 1.1 * t)
-             + Math.sin(2.9 * (x + y) + 0.7 * t) * 0.5;
+        return Math.sin(1.7 * x + 1.3 * t) * Math.cos(1.9 * y - 1.1 * t) + Math.sin(2.9 * (x + y) + 0.7 * t) * 0.5;
       }
-
       function field(px, py, t) {
-        const x = (px / W) * 2 - 1;
-        const y = (py / H) * 2 - 1;
-
-        const mx = (mouse.x - 0.5) * 0.18;
-        const my = (mouse.y - 0.5) * 0.18;
-
-        const w1 = noise2(x + mx, y + my, t);
-        const w2 = noise2(x * 1.7 - my, y * 1.7 + mx, t * 0.9);
-
-        const wx = x + 0.18 * w1;
-        const wy = y + 0.18 * w2;
-
+        const x = (px / W) * 2 - 1, y = (py / H) * 2 - 1;
+        const mx = (mouse.x - 0.5) * 0.18, my = (mouse.y - 0.5) * 0.18;
+        const w1 = noise2(x + mx, y + my, t), w2 = noise2(x * 1.7 - my, y * 1.7 + mx, t * 0.9);
+        const wx = x + 0.18 * w1, wy = y + 0.18 * w2;
         const a = noise2(wx, wy, t * 0.7);
-
         const vx = Math.cos(a * Math.PI * 1.2) + 0.35 * Math.sin(w2 * 2.2);
         const vy = Math.sin(a * Math.PI * 1.2) - 0.35 * Math.cos(w1 * 2.2);
-
         return { vx, vy };
       }
-
       const particles = [];
       const isMobile = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
-
-      const COUNT = isMobile ? 1400 : 2400;
-      const SPEED = isMobile ? 0.85 : 1.05;
-
+      const COUNT = isMobile ? 1400 : 2400, SPEED = isMobile ? 0.85 : 1.05;
       function rand(n) { return Math.random() * n; }
-
       function spawn(p) {
         for (let tries = 0; tries < 60; tries++) {
-          const angle = rand(Math.PI * 2);
-          const radius = (0.18 + Math.random() * 0.42) * Math.min(W, H);
-          const x = map.cx + Math.cos(angle) * radius;
-          const y = map.cy + Math.sin(angle) * radius;
-
-          const m = sampleMask(x, y);
-          const ok = map.ready ? (m > 0.06 || Math.random() < 0.20) : true;
-          if (ok) {
-            p.x = x; p.y = y;
-            p.px = x; p.py = y;
-            p.life = 0;
-            p.hue = 200 + Math.random() * 90;
-            p.w = 0.6 + Math.random() * 1.2;
-            return;
-          }
+          const angle = rand(Math.PI * 2), radius = (0.18 + Math.random() * 0.42) * Math.min(W, H);
+          const x = map.cx + Math.cos(angle) * radius, y = map.cy + Math.sin(angle) * radius;
+          const m = sampleMask(x, y), ok = map.ready ? (m > 0.06 || Math.random() < 0.20) : true;
+          if (ok) { p.x = x; p.y = y; p.px = x; p.py = y; p.life = 0; p.hue = 200 + Math.random() * 90; p.w = 0.6 + Math.random() * 1.2; return; }
         }
-
-        p.x = rand(W); p.y = rand(H);
-        p.px = p.x; p.py = p.y;
-        p.life = 0;
-        p.hue = 200 + Math.random() * 90;
-        p.w = 0.6 + Math.random() * 1.2;
+        p.x = rand(W); p.y = rand(H); p.px = p.x; p.py = p.y; p.life = 0; p.hue = 200 + Math.random() * 90; p.w = 0.6 + Math.random() * 1.2;
       }
-
-      for (let i = 0; i < COUNT; i++) {
-        const p = { x: 0, y: 0, px: 0, py: 0, life: 0, hue: 0, w: 1 };
-        spawn(p);
-        p.life = Math.random() * 140;
-        particles.push(p);
-      }
-
-      let last = performance.now();
-      let t0 = performance.now();
-
+      for (let i = 0; i < COUNT; i++) { const p = { x: 0, y: 0, px: 0, py: 0, life: 0, hue: 0, w: 1 }; spawn(p); p.life = Math.random() * 140; particles.push(p); }
+      let last = performance.now(), t0 = performance.now();
       function step(now) {
-        const dt = Math.min(0.033, (now - last) / 1000);
-        last = now;
-        const t = (now - t0) / 1000;
-
-        // Fade (trails) - reduce alpha to make background "stronger"
-        ctx.save();
-        ctx.globalCompositeOperation = 'source-over';
-        ctx.fillStyle = 'rgba(10,10,15,0.06)'; // stronger trails than 0.10
-        ctx.fillRect(0, 0, W, H);
-        ctx.restore();
-
-        ctx.save();
-        ctx.globalCompositeOperation = 'lighter';
-        ctx.lineCap = 'round';
-
+        const dt = Math.min(0.033, (now - last) / 1000); last = now; const t = (now - t0) / 1000;
+        ctx.save(); ctx.globalCompositeOperation = 'source-over'; ctx.fillStyle = 'rgba(10,10,15,0.10)'; ctx.fillRect(0, 0, W, H); ctx.restore();
+        ctx.save(); ctx.globalCompositeOperation = 'lighter'; ctx.lineCap = 'round';
         for (let i = 0; i < particles.length; i++) {
-          const p = particles[i];
-
-          const m = map.ready ? sampleMask(p.x, p.y) : 0;
-
+          const p = particles[i], m = map.ready ? sampleMask(p.x, p.y) : 0;
           let gx = 0, gy = 0;
-          if (map.ready) {
-            const e = 2.0 * DPR;
-            gx = sampleMask(p.x + e, p.y) - sampleMask(p.x - e, p.y);
-            gy = sampleMask(p.x, p.y + e) - sampleMask(p.x, p.y - e);
-          }
-
-          let tx = -gy, ty = gx;
-          const tl = Math.hypot(tx, ty) || 1;
-          tx /= tl; ty /= tl;
-
-          const f = field(p.x, p.y, t);
-
-          const k = 0.55 + 1.8 * m;
-          const vx = (f.vx * 0.85 + tx * k);
-          const vy = (f.vy * 0.85 + ty * k);
-
-          p.px = p.x; p.py = p.y;
-          p.x += vx * SPEED * (120 * DPR) * dt;
-          p.y += vy * SPEED * (120 * DPR) * dt;
-          p.life += 1;
-
-          // Increase line opacity for a stronger electric look
-          const a = 0.12 + 0.32 * Math.min(1, m * 2);
-          ctx.strokeStyle = `hsla(${p.hue}, 95%, 65%, ${a})`;
-          ctx.lineWidth = p.w * DPR;
-          ctx.beginPath();
-          ctx.moveTo(p.px, p.py);
-          ctx.lineTo(p.x, p.y);
-          ctx.stroke();
-
-          if (p.x < -50 || p.x > W + 50 || p.y < -50 || p.y > H + 50 || p.life > 320) {
-            spawn(p);
-          }
+          if (map.ready) { const e = 2.0 * DPR; gx = sampleMask(p.x + e, p.y) - sampleMask(p.x - e, p.y); gy = sampleMask(p.x, p.y + e) - sampleMask(p.x, p.y - e); }
+          let tx = -gy, ty = gx; const tl = Math.hypot(tx, ty) || 1; tx /= tl; ty /= tl;
+          const f = field(p.x, p.y, t), k = 0.55 + 1.8 * m;
+          const vx = (f.vx * 0.85 + tx * k), vy = (f.vy * 0.85 + ty * k);
+          p.px = p.x; p.py = p.y; p.x += vx * SPEED * (120 * DPR) * dt; p.y += vy * SPEED * (120 * DPR) * dt; p.life += 1;
+          const a = 0.38 + 0.70 * Math.min(1, m * 2);
+          ctx.strokeStyle = `hsla(${p.hue}, 95%, 65%, ${a})`; ctx.lineWidth = p.w * DPR;
+          ctx.beginPath(); ctx.moveTo(p.px, p.py); ctx.lineTo(p.x, p.y); ctx.stroke();
+          if (p.x < -50 || p.x > W + 50 || p.y < -50 || p.y > H + 50 || p.life > 320) spawn(p);
         }
-
-        ctx.restore();
-        requestAnimationFrame(step);
+        ctx.restore(); requestAnimationFrame(step);
       }
-
-      ctx.fillStyle = '#0a0a0f';
-      ctx.fillRect(0, 0, W, H);
-      requestAnimationFrame(step);
+      ctx.fillStyle = '#0a0a0f'; ctx.fillRect(0, 0, W, H); requestAnimationFrame(step);
     })();
-
-    /**
-     * Scroll reveal animation (your existing logic)
-     */
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('active');
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   </script>
 </body>
 </html>
