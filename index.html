@@ -3,19 +3,602 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Insaru – Smarter Landlord Management</title>
-  <link rel="stylesheet" href="style.css" />
-  <meta name="description" content="Insaru is a landlord assistant app that helps landlords manage tenants, track rent, and ensure compliance." />
-  <meta property="og:title" content="Insaru – Smarter Landlord Management"/>
-  <meta property="og:description" content="Insaru is a landlord assistant app that helps landlords manage tenants, track rent, and ensure compliance."/>
-  <meta property="og:image" content="assets/images/app-preview.png"/>
+  <title>Insaru – Replace Your Letting Agent. Keep 99% of Your Rent.</title>
+  <meta name="description" content="Enterprise-grade property management for landlords. Zero-knowledge encryption, forced compliance, automated rent collection. Replace £1,440/year agents with £72/year software." />
+  <meta property="og:title" content="Insaru – Replace Your Letting Agent"/>
+  <meta property="og:description" content="Save £1,368/year per property. Local-first property management with automated compliance and rent collection."/>
+  <meta property="og:image" content="branding/soon.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --cosmic-black: #0a0a0f;
+      --cosmic-purple: #6b4ce6;
+      --cosmic-blue: #4da3ff;
+      --cosmic-pink: #ff6b9d;
+      --cosmic-gold: #ffd700;
+      --text-primary: #ffffff;
+      --text-secondary: #b8b8c8;
+      --text-muted: #6e6e7e;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--cosmic-black);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    /* Animated starfield background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(2px 2px at 20% 30%, white, transparent),
+        radial-gradient(2px 2px at 60% 70%, white, transparent),
+        radial-gradient(1px 1px at 50% 50%, white, transparent),
+        radial-gradient(1px 1px at 80% 10%, white, transparent),
+        radial-gradient(2px 2px at 90% 60%, white, transparent),
+        radial-gradient(1px 1px at 33% 80%, white, transparent),
+        radial-gradient(1px 1px at 15% 90%, white, transparent);
+      background-size: 200% 200%;
+      background-position: 0% 0%;
+      animation: drift 60s ease-in-out infinite;
+      opacity: 0.3;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes drift {
+      0%, 100% { background-position: 0% 0%; }
+      50% { background-position: 100% 100%; }
+    }
+
+    /* Gradient glow effect */
+    .glow-orb {
+      position: fixed;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.15;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .glow-orb-1 {
+      background: var(--cosmic-purple);
+      top: -200px;
+      left: -200px;
+      animation: float1 20s ease-in-out infinite;
+    }
+
+    .glow-orb-2 {
+      background: var(--cosmic-blue);
+      bottom: -200px;
+      right: -200px;
+      animation: float2 25s ease-in-out infinite;
+    }
+
+    .glow-orb-3 {
+      background: var(--cosmic-pink);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: pulse 15s ease-in-out infinite;
+    }
+
+    @keyframes float1 {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(100px, 100px); }
+    }
+
+    @keyframes float2 {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(-100px, -100px); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.15; }
+      50% { transform: translate(-50%, -50%) scale(1.3); opacity: 0.25; }
+    }
+
+    /* Main container */
+    .container {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    /* Logo section */
+    .logo-section {
+      text-align: center;
+      animation: fadeInScale 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes fadeInScale {
+      0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    .logo-wrapper {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 3rem;
+    }
+
+    .logo-wrapper::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 120%;
+      height: 120%;
+      background: radial-gradient(circle, var(--cosmic-blue) 0%, transparent 70%);
+      opacity: 0;
+      animation: logoPulse 3s ease-in-out infinite;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    @keyframes logoPulse {
+      0%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(1); }
+      50% { opacity: 0.3; transform: translate(-50%, -50%) scale(1.1); }
+    }
+
+    .logo-image {
+      max-width: min(600px, 80vw);
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 0 40px rgba(107, 76, 230, 0.5));
+      transition: transform 0.3s ease;
+    }
+
+    .logo-image:hover {
+      transform: scale(1.02);
+    }
+
+    /* Headline */
+    .headline {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, #ffffff 0%, var(--cosmic-blue) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+    }
+
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .headline-accent {
+      display: block;
+      font-weight: 600;
+      background: linear-gradient(135deg, var(--cosmic-gold) 0%, var(--cosmic-pink) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Subheadline */
+    .subheadline {
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      font-weight: 300;
+      color: var(--text-secondary);
+      max-width: 700px;
+      margin: 0 auto 3rem;
+      line-height: 1.6;
+      animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+    }
+
+    /* Stats grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto 4rem;
+      animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both;
+    }
+
+    .stat-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--cosmic-blue), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(77, 163, 255, 0.5);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .stat-card:hover::before {
+      opacity: 1;
+    }
+
+    .stat-value {
+      font-size: 2.5rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, var(--cosmic-blue) 0%, var(--cosmic-purple) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      font-weight: 400;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      text-align: center;
+      animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.8s both;
+    }
+
+    .launch-date {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .email-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      max-width: 500px;
+      margin: 0 auto 2rem;
+    }
+
+    .email-input-wrapper {
+      position: relative;
+      width: 100%;
+    }
+
+    .email-input {
+      width: 100%;
+      padding: 1.2rem 1.5rem;
+      font-size: 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      color: var(--text-primary);
+      outline: none;
+      transition: all 0.3s ease;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .email-input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .email-input:focus {
+      border-color: var(--cosmic-blue);
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 0 0 3px rgba(77, 163, 255, 0.1);
+    }
+
+    .notify-button {
+      width: 100%;
+      padding: 1.2rem 2rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, var(--cosmic-blue) 0%, var(--cosmic-purple) 100%);
+      border: none;
+      border-radius: 12px;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Inter', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .notify-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .notify-button:hover::before {
+      left: 100%;
+    }
+
+    .notify-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(77, 163, 255, 0.4);
+    }
+
+    .notify-button:active {
+      transform: translateY(0);
+    }
+
+    /* Social proof */
+    .social-proof {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 1rem;
+    }
+
+    /* Footer */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 3rem 2rem 2rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      margin-top: 6rem;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--cosmic-blue);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .headline {
+        font-size: 2.5rem;
+      }
+
+      .logo-image {
+        max-width: 90vw;
+      }
+    }
+
+    /* Loading state for form */
+    .notify-button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    /* Success message */
+    .success-message {
+      display: none;
+      padding: 1rem;
+      background: rgba(0, 255, 127, 0.1);
+      border: 1px solid rgba(0, 255, 127, 0.3);
+      border-radius: 12px;
+      color: #00ff7f;
+      margin-top: 1rem;
+      animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .success-message.show {
+      display: block;
+    }
+  </style>
 </head>
 <body>
+  <!-- Animated background orbs -->
+  <div class="glow-orb glow-orb-1"></div>
+  <div class="glow-orb glow-orb-2"></div>
+  <div class="glow-orb glow-orb-3"></div>
 
-    <img src="branding/soon.png"/>
-  
+  <div class="container">
+    <div class="logo-section">
+      <!-- Logo -->
+      <div class="logo-wrapper">
+        <img src="branding/soon.png" alt="Insaru - Enterprise Property Management" class="logo-image"/>
+      </div>
+
+      <!-- Headline -->
+      <h1 class="headline">
+        Replace Your Letting Agent.
+        <span class="headline-accent">Keep 99% of Your Rent.</span>
+      </h1>
+
+      <!-- Subheadline -->
+      <p class="subheadline">
+        Enterprise-grade property management with zero-knowledge encryption, 
+        forced compliance workflows, and automated rent collection. 
+        Save £1,368/year per property.
+      </p>
+
+      <!-- Stats -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-value">1%</div>
+          <div class="stat-label">Management Fee<br/>(vs 10% agents)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">£0</div>
+          <div class="stat-label">Server Costs<br/>(Local-First)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">6yrs</div>
+          <div class="stat-label">Evidence Retention<br/>(HMRC Ready)</div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="cta-section">
+        <div class="launch-date">Launching Q2 2026</div>
+        
+        <form class="email-form" id="notifyForm">
+          <div class="email-input-wrapper">
+            <input 
+              type="email" 
+              class="email-input" 
+              placeholder="Enter your email for early access"
+              required
+              id="emailInput"
+            />
+          </div>
+          <button type="submit" class="notify-button">
+            Notify Me at Launch
+          </button>
+        </form>
+
+        <div class="success-message" id="successMessage">
+          ✓ You're on the list! We'll notify you when Insaru launches.
+        </div>
+
+        <div class="social-proof">
+          Join landlords who are tired of paying 10% to agents
+        </div>
+      </div>
+    </div>
+  </div>
+
   <footer>
+    <div class="footer-links">
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
     <p>© 2025 Insaru. All rights reserved.</p>
+    <p style="margin-top: 0.5rem; font-size: 0.75rem;">
+      Local-first property management. Your data, your device, your control.
+    </p>
   </footer>
+
+  <script>
+    // Email form submission
+    document.getElementById('notifyForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const button = this.querySelector('.notify-button');
+      const successMessage = document.getElementById('successMessage');
+      const emailInput = document.getElementById('emailInput');
+      
+      // Disable button
+      button.disabled = true;
+      button.textContent = 'Submitting...';
+      
+      // Simulate API call (replace with actual endpoint)
+      setTimeout(() => {
+        // Show success message
+        successMessage.classList.add('show');
+        
+        // Reset form
+        emailInput.value = '';
+        button.textContent = 'Notify Me at Launch';
+        button.disabled = false;
+        
+        // Hide success message after 5 seconds
+        setTimeout(() => {
+          successMessage.classList.remove('show');
+        }, 5000);
+      }, 1000);
+    });
+
+    // Add subtle parallax effect on mouse move
+    document.addEventListener('mousemove', (e) => {
+      const orbs = document.querySelectorAll('.glow-orb');
+      const x = e.clientX / window.innerWidth;
+      const y = e.clientY / window.innerHeight;
+      
+      orbs.forEach((orb, index) => {
+        const speed = (index + 1) * 20;
+        const xOffset = (x - 0.5) * speed;
+        const yOffset = (y - 0.5) * speed;
+        
+        orb.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+      });
+    });
+  </script>
 </body>
 </html>
