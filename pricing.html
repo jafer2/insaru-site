@@ -121,15 +121,19 @@
 
     .brand:hover .brand-name { opacity: 0.85; }
 
+    nav {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
     nav a {
       color: var(--text-secondary);
       text-decoration: none;
-      margin-left: 2rem;
       font-size: 0.95rem;
       transition: color 0.3s;
+      font-weight: 500;
     }
-
-    nav a:hover { color: var(--cosmic-blue); }
+    nav a:hover, nav a.active { color: var(--cosmic-blue); }
 
     /* Main */
     .container {
