@@ -1,3 +1,8 @@
+<!-- =========================
+     pricing.html (UPDATED)
+     Same electric maths background + same logo as index.html
+     Uses: logonew.png everywhere
+     ========================= -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,15 +10,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Pricing - Insaru Property Management</title>
   <meta name="description" content="Replace your letting agent for 1% instead of 10%. Save £1,368/year per property with Insaru's enterprise-grade property management." />
+
+  <meta property="og:title" content="Pricing – Insaru"/>
+  <meta property="og:description" content="Replace your letting agent for 1% instead of 10%. Save £1,368/year per property."/>
+  <meta property="og:image" content="logonew.png"/>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
       --cosmic-black: #0a0a0f;
@@ -26,49 +33,63 @@
       --text-muted: #6e6e7e;
     }
 
+    html, body { height: 100%; }
+
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background: var(--cosmic-black);
       color: var(--text-primary);
       overflow-x: hidden;
       line-height: 1.6;
+      position: relative;
+      min-height: 100vh;
     }
 
-    /* Fractal background */
-    .fractal-background {
+    /* =========================
+       BACKGROUND: same as home
+       ========================= */
+    #mathBg {
       position: fixed;
-      top: 0;
-      left: 0;
+      inset: 0;
       width: 100%;
       height: 100%;
-      overflow: hidden;
+      display: block;
       z-index: 0;
-      opacity: 0.4;
     }
 
-    .fractal-layer {
-      position: absolute;
+    .logo-center {
+      position: fixed;
       top: 50%;
       left: 50%;
-      width: 80%;
-      max-width: 1000px;
-      opacity: 0.2;
-      mix-blend-mode: screen;
+      transform: translate(-50%, -50%);
+      width: min(1200px, 88vw);
+      opacity: 0.16;
+      filter: drop-shadow(0 0 70px rgba(107, 76, 230, 0.35));
       pointer-events: none;
+      z-index: 1;
     }
 
-    .fractal-layer-1 {
-      clip-path: polygon(50% 0%, 100% 50%, 50% 50%);
-      animation: piece1Move 8s ease-in-out infinite;
-      filter: hue-rotate(10deg) brightness(1.1) drop-shadow(0 0 30px rgba(77, 163, 255, 0.3));
+    .fx {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      background:
+        radial-gradient(60% 55% at 50% 40%, rgba(0,0,0,0) 0%, rgba(0,0,0,.32) 68%, rgba(0,0,0,.70) 100%),
+        linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.08) 45%, rgba(0,0,0,.62) 100%);
+    }
+    .fx::after{
+      content:"";
+      position:absolute;
+      inset:-40px;
+      opacity:.06;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.28'/%3E%3C/svg%3E");
     }
 
-    @keyframes piece1Move {
-      0%, 100% { transform: translate(-50%, -50%) translate(0, 0) rotate(0deg); }
-      50% { transform: translate(-50%, -50%) translate(15px, -20px) rotate(2deg); }
-    }
-
-    /* Header */
+    /* =========================
+       HEADER
+       ========================= */
     header {
       position: relative;
       z-index: 10;
@@ -80,20 +101,34 @@
       margin: 0 auto;
     }
 
-    .logo-small {
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      text-decoration: none;
+      color: var(--text-primary);
+      user-select: none;
+    }
+
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 18px rgba(107, 76, 230, 0.55));
+    }
+
+    .brand-name {
       font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 1.8rem;
       font-weight: 300;
       background: linear-gradient(135deg, #4da3ff, #ffffff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      text-decoration: none;
       transition: opacity 0.3s;
+      line-height: 1;
     }
 
-    .logo-small:hover {
-      opacity: 0.8;
-    }
+    .brand:hover .brand-name { opacity: 0.85; }
 
     nav a {
       color: var(--text-secondary);
@@ -103,21 +138,22 @@
       transition: color 0.3s;
     }
 
-    nav a:hover {
-      color: var(--cosmic-blue);
-    }
+    nav a:hover { color: var(--cosmic-blue); }
 
-    /* Main container */
+    /* =========================
+       MAIN
+       ========================= */
     .container {
       position: relative;
-      z-index: 1;
+      z-index: 3;
       min-height: 100vh;
       padding: 4rem 2rem;
       max-width: 1400px;
       margin: 0 auto;
+      background: radial-gradient(circle at center, transparent 0%, rgba(10, 10, 15, 0.20) 60%, rgba(10, 10, 15, 0.75) 100%);
     }
 
-    /* Hero section */
+    /* Hero */
     .hero {
       text-align: center;
       margin-bottom: 6rem;
@@ -160,9 +196,7 @@
       margin-top: 2rem;
     }
 
-    .comparison-item {
-      text-align: center;
-    }
+    .comparison-item { text-align: center; }
 
     .comparison-label {
       font-size: 0.85rem;
@@ -183,9 +217,7 @@
       opacity: 0.6;
     }
 
-    .comparison-new {
-      color: var(--cosmic-blue);
-    }
+    .comparison-new { color: var(--cosmic-blue); }
 
     .comparison-arrow {
       font-size: 2rem;
@@ -209,6 +241,7 @@
       transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       position: relative;
       overflow: hidden;
+      backdrop-filter: blur(20px);
     }
 
     .pricing-card::before {
@@ -230,9 +263,7 @@
       box-shadow: 0 30px 80px rgba(77, 163, 255, 0.2);
     }
 
-    .pricing-card:hover::before {
-      opacity: 1;
-    }
+    .pricing-card:hover::before { opacity: 1; }
 
     .pricing-card.featured {
       border: 2px solid var(--cosmic-blue);
@@ -280,9 +311,7 @@
       min-height: 60px;
     }
 
-    .pricing-price {
-      margin-bottom: 2rem;
-    }
+    .pricing-price { margin-bottom: 2rem; }
 
     .price-amount {
       font-size: 3.5rem;
@@ -292,16 +321,8 @@
       -webkit-text-fill-color: transparent;
     }
 
-    .price-period {
-      color: var(--text-muted);
-      font-size: 1rem;
-    }
-
-    .price-note {
-      color: var(--text-muted);
-      font-size: 0.85rem;
-      margin-top: 0.5rem;
-    }
+    .price-period { color: var(--text-muted); font-size: 1rem; }
+    .price-note { color: var(--text-muted); font-size: 0.85rem; margin-top: 0.5rem; }
 
     .pricing-cta {
       width: 100%;
@@ -338,9 +359,7 @@
       box-shadow: 0 15px 40px rgba(77, 163, 255, 0.4);
     }
 
-    .pricing-features {
-      list-style: none;
-    }
+    .pricing-features { list-style: none; }
 
     .pricing-features li {
       padding: 0.8rem 0;
@@ -351,9 +370,7 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
 
-    .pricing-features li:last-child {
-      border-bottom: none;
-    }
+    .pricing-features li:last-child { border-bottom: none; }
 
     .pricing-features li::before {
       content: "✓";
@@ -364,14 +381,8 @@
       font-size: 1.2rem;
     }
 
-    .pricing-features li.disabled {
-      opacity: 0.3;
-    }
-
-    .pricing-features li.disabled::before {
-      content: "✗";
-      color: var(--text-muted);
-    }
+    .pricing-features li.disabled { opacity: 0.3; }
+    .pricing-features li.disabled::before { content: "✗"; color: var(--text-muted); }
 
     /* Comparison table */
     .comparison-section {
@@ -418,37 +429,14 @@
       font-size: 0.9rem;
     }
 
-    .comparison-table tbody tr:hover {
-      background: rgba(255, 255, 255, 0.02);
-    }
+    .comparison-table tbody tr:hover { background: rgba(255, 255, 255, 0.02); }
+    .comparison-table td:first-child { color: var(--text-primary); font-weight: 500; }
+    .comparison-table td:not(:first-child) { text-align: center; color: var(--text-secondary); }
 
-    .comparison-table td:first-child {
-      color: var(--text-primary);
-      font-weight: 500;
-    }
-
-    .comparison-table td:not(:first-child) {
-      text-align: center;
-      color: var(--text-secondary);
-    }
-
-    .check {
-      color: var(--cosmic-blue);
-      font-size: 1.5rem;
-    }
-
-    .cross {
-      color: var(--text-muted);
-      font-size: 1.5rem;
-      opacity: 0.3;
-    }
-
-    /* FAQ Section */
+    /* FAQ */
     .faq-section {
-      margin: 6rem 0;
+      margin: 6rem auto;
       max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
       animation: fadeInUp 1s ease-out 0.6s both;
     }
 
@@ -459,6 +447,7 @@
       padding: 2rem;
       margin-bottom: 1.5rem;
       transition: all 0.3s;
+      backdrop-filter: blur(20px);
     }
 
     .faq-item:hover {
@@ -473,12 +462,9 @@
       margin-bottom: 1rem;
     }
 
-    .faq-answer {
-      color: var(--text-secondary);
-      line-height: 1.7;
-    }
+    .faq-answer { color: var(--text-secondary); line-height: 1.7; }
 
-    /* CTA Section */
+    /* CTA */
     .final-cta {
       text-align: center;
       padding: 4rem 2rem;
@@ -487,6 +473,7 @@
       border-radius: 24px;
       margin: 6rem 0;
       animation: fadeInUp 1s ease-out 0.8s both;
+      backdrop-filter: blur(20px);
     }
 
     .final-cta h2 {
@@ -528,6 +515,8 @@
 
     /* Footer */
     footer {
+      position: relative;
+      z-index: 3;
       text-align: center;
       padding: 3rem 2rem;
       border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -537,47 +526,38 @@
 
     /* Responsive */
     @media (max-width: 768px) {
-      .pricing-grid {
-        grid-template-columns: 1fr;
-      }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .pricing-card.featured { transform: scale(1); }
+      .hero-comparison { flex-direction: column; gap: 1rem; }
+      .comparison-arrow { transform: rotate(90deg); }
+      .comparison-table { overflow-x: auto; }
+      nav { display: none; }
+      .logo-center { width: 192vw; opacity: 0.14; }
+    }
 
-      .pricing-card.featured {
-        transform: scale(1);
-      }
-
-      .hero-comparison {
-        flex-direction: column;
-        gap: 1rem;
-      }
-
-      .comparison-arrow {
-        transform: rotate(90deg);
-      }
-
-      .comparison-table {
-        overflow-x: auto;
-      }
-
-      nav {
-        display: none;
-      }
+    @media (prefers-reduced-motion: reduce) {
+      #mathBg { display: none; }
     }
   </style>
 </head>
+
 <body>
-  <!-- Fractal background -->
-  <div class="fractal-background">
-    <img src="logonew.png" alt="" class="fractal-layer fractal-layer-1"/>
-  </div>
+  <!-- Same background stack as home -->
+  <canvas id="mathBg" aria-hidden="true"></canvas>
+  <img src="logonew.png" alt="" class="logo-center" aria-hidden="true"/>
+  <div class="fx" aria-hidden="true"></div>
 
   <!-- Header -->
   <header>
-    <a href="index.html" class="logo-small">Insaru</a>
+    <a href="index.html" class="brand">
+      <img src="logonew.png" alt="Insaru" class="brand-mark" />
+      <span class="brand-name">Insaru</span>
+    </a>
     <nav>
-      <a href="#features">Features</a>
+      <a href="index.html#features">Features</a>
       <a href="pricing.html">Pricing</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
     </nav>
   </header>
 
@@ -587,7 +567,7 @@
     <section class="hero">
       <h1 class="hero-title">Simple, Transparent Pricing</h1>
       <p class="hero-subtitle">
-        Replace your letting agent and keep 99% of your rent. 
+        Replace your letting agent and keep 99% of your rent.
         No hidden fees, no lock-in contracts.
       </p>
 
@@ -740,7 +720,7 @@
     <!-- FAQ -->
     <section class="faq-section">
       <h2 class="section-title">Frequently Asked Questions</h2>
-      
+
       <div class="faq-item">
         <h3 class="faq-question">Why is Insaru 10x cheaper than letting agents?</h3>
         <p class="faq-answer">
@@ -751,35 +731,35 @@
       <div class="faq-item">
         <h3 class="faq-question">Is the Free tier really free forever?</h3>
         <p class="faq-answer">
-          Yes! The Free tier is completely free, no credit card required. You get unlimited document storage, certificate tracking, and basic compliance tools. You only pay when you want automated rent collection and advanced features.
+          Yes. The Free tier is completely free, no credit card required. You get unlimited document storage, certificate tracking, and basic compliance tools. You only pay when you want automated rent collection and advanced features.
         </p>
       </div>
 
       <div class="faq-item">
         <h3 class="faq-question">How does the 1% fee work?</h3>
         <p class="faq-answer">
-          We only charge when rent is successfully collected through Stripe. For example: tenant pays £1,200 → Stripe deducts £18 (1.5% payment processing) → Insaru deducts £12 (1% management fee) → you receive £1,170. No rent collected = no fee. Simple.
+          We only charge when rent is successfully collected through Stripe. Example: tenant pays £1,200 → Stripe deducts £18 (1.5% processing) → Insaru deducts £12 (1% fee) → you receive £1,170. No rent collected = no fee.
         </p>
       </div>
 
       <div class="faq-item">
         <h3 class="faq-question">Can I switch between plans?</h3>
         <p class="faq-answer">
-          Absolutely! Start free and upgrade to Premium whenever you want automated rent collection. Downgrade anytime - your data stays in the Free tier's document vault. No lock-in contracts.
+          Yes. Start free and upgrade to Premium whenever you want automated rent collection. Downgrade anytime — your data stays in the vault. No lock-in.
         </p>
       </div>
 
       <div class="faq-item">
         <h3 class="faq-question">What about payment processing fees?</h3>
         <p class="faq-answer">
-          Stripe charges 1.5% (£18 on £1,200) for card processing - this is standard and unavoidable. Combined with Insaru's 1% (£12), total cost is 2.5% (£30). Still massively cheaper than 10% agents (£120).
+          Stripe charges 1.5% (£18 on £1,200) for card processing. Combined with Insaru’s 1% (£12), total cost is 2.5% (£30). Still materially cheaper than 10% agents (£120).
         </p>
       </div>
 
       <div class="faq-item">
         <h3 class="faq-question">Is my data secure?</h3>
         <p class="faq-answer">
-          Yes! Insaru uses zero-knowledge encryption. Your data is encrypted on your device before it ever leaves. We literally cannot access your property details, rent amounts, or tenant information - even if we wanted to. You're the only one with the keys.
+          Yes. Insaru uses zero-knowledge encryption. Your data is encrypted on your device before it ever leaves. You control the keys.
         </p>
       </div>
     </section>
@@ -788,7 +768,7 @@
     <section class="final-cta">
       <h2>Ready to Save £1,368/year?</h2>
       <p>
-        Join landlords who are tired of paying 10% to agents. 
+        Join landlords who are tired of paying 10% to agents.
         Start managing your properties with Insaru today.
       </p>
       <button>Start Free Trial</button>
@@ -802,5 +782,234 @@
       Local-first property management. Your data, your device, your control.
     </p>
   </footer>
+
+  <script>
+    /**
+     * SAME ABSTRACT MATHEMATICAL BACKGROUND AS HOME (index.html)
+     * Logo is NOT drawn as a fractal.
+     * The logo is used ONLY as a low-res mask to influence the flow-field.
+     */
+    (function () {
+      const canvas = document.getElementById('mathBg');
+      const ctx = canvas.getContext('2d', { alpha: false });
+
+      const DPR = Math.min(2, window.devicePixelRatio || 1);
+      let W = 0, H = 0;
+
+      const mouse = { x: 0.5, y: 0.5 };
+      window.addEventListener('mousemove', (e) => {
+        mouse.x = e.clientX / window.innerWidth;
+        mouse.y = e.clientY / window.innerHeight;
+      }, { passive: true });
+
+      const logo = new Image();
+      logo.decoding = 'async';
+      logo.crossOrigin = 'anonymous';
+      logo.src = 'logonew.png';
+
+      const map = {
+        ready: false,
+        w: 256,
+        h: 256,
+        data: null,
+        cx: 0, cy: 0, size: 0
+      };
+
+      function resize() {
+        W = Math.floor(window.innerWidth * DPR);
+        H = Math.floor(window.innerHeight * DPR);
+        canvas.width = W;
+        canvas.height = H;
+
+        map.cx = W * 0.5;
+        map.cy = H * 0.5;
+        map.size = Math.min(W, H) * 0.62;
+
+        ctx.fillStyle = '#0a0a0f';
+        ctx.fillRect(0, 0, W, H);
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      function buildAlphaMap() {
+        const oc = document.createElement('canvas');
+        oc.width = map.w;
+        oc.height = map.h;
+        const octx = oc.getContext('2d');
+
+        octx.clearRect(0, 0, map.w, map.h);
+
+        const s = Math.min(map.w, map.h) * 0.9;
+        const x = (map.w - s) / 2;
+        const y = (map.h - s) / 2;
+        octx.drawImage(logo, x, y, s, s);
+
+        const img = octx.getImageData(0, 0, map.w, map.h).data;
+        const a = new Float32Array(map.w * map.h);
+
+        for (let i = 0; i < map.w * map.h; i++) {
+          const r = img[i * 4 + 0];
+          const g = img[i * 4 + 1];
+          const b = img[i * 4 + 2];
+          const alpha = img[i * 4 + 3] / 255;
+          const lum = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
+          const v = alpha > 0.02 ? alpha : Math.max(0, lum - 0.15);
+          a[i] = v;
+        }
+
+        map.data = a;
+        map.ready = true;
+      }
+
+      logo.onload = () => buildAlphaMap();
+      logo.onerror = () => { map.ready = false; };
+
+      function sampleMask(px, py) {
+        if (!map.ready) return 0;
+
+        const half = map.size / 2;
+        const lx = (px - (map.cx - half)) / map.size;
+        const ly = (py - (map.cy - half)) / map.size;
+        if (lx < 0 || lx > 1 || ly < 0 || ly > 1) return 0;
+
+        const ix = Math.max(0, Math.min(map.w - 1, (lx * (map.w - 1)) | 0));
+        const iy = Math.max(0, Math.min(map.h - 1, (ly * (map.h - 1)) | 0));
+        return map.data[iy * map.w + ix];
+      }
+
+      function noise2(x, y, t) {
+        return Math.sin(1.7 * x + 1.3 * t) * Math.cos(1.9 * y - 1.1 * t)
+             + Math.sin(2.9 * (x + y) + 0.7 * t) * 0.5;
+      }
+
+      function field(px, py, t) {
+        const x = (px / W) * 2 - 1;
+        const y = (py / H) * 2 - 1;
+
+        const mx = (mouse.x - 0.5) * 0.18;
+        const my = (mouse.y - 0.5) * 0.18;
+
+        const w1 = noise2(x + mx, y + my, t);
+        const w2 = noise2(x * 1.7 - my, y * 1.7 + mx, t * 0.9);
+
+        const wx = x + 0.18 * w1;
+        const wy = y + 0.18 * w2;
+
+        const a = noise2(wx, wy, t * 0.7);
+
+        const vx = Math.cos(a * Math.PI * 1.2) + 0.35 * Math.sin(w2 * 2.2);
+        const vy = Math.sin(a * Math.PI * 1.2) - 0.35 * Math.cos(w1 * 2.2);
+
+        return { vx, vy };
+      }
+
+      const particles = [];
+      const isMobile = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
+
+      const COUNT = isMobile ? 1400 : 2400;
+      const SPEED = isMobile ? 0.85 : 1.05;
+
+      function rand(n) { return Math.random() * n; }
+
+      function spawn(p) {
+        for (let tries = 0; tries < 60; tries++) {
+          const angle = rand(Math.PI * 2);
+          const radius = (0.18 + Math.random() * 0.42) * Math.min(W, H);
+          const x = map.cx + Math.cos(angle) * radius;
+          const y = map.cy + Math.sin(angle) * radius;
+
+          const m = sampleMask(x, y);
+          const ok = map.ready ? (m > 0.06 || Math.random() < 0.20) : true;
+          if (ok) {
+            p.x = x; p.y = y;
+            p.px = x; p.py = y;
+            p.life = 0;
+            p.hue = 200 + Math.random() * 90;
+            p.w = 0.6 + Math.random() * 1.2;
+            return;
+          }
+        }
+
+        p.x = rand(W); p.y = rand(H);
+        p.px = p.x; p.py = p.y;
+        p.life = 0;
+        p.hue = 200 + Math.random() * 90;
+        p.w = 0.6 + Math.random() * 1.2;
+      }
+
+      for (let i = 0; i < COUNT; i++) {
+        const p = { x: 0, y: 0, px: 0, py: 0, life: 0, hue: 0, w: 1 };
+        spawn(p);
+        p.life = Math.random() * 140;
+        particles.push(p);
+      }
+
+      let last = performance.now();
+      let t0 = performance.now();
+
+      function step(now) {
+        const dt = Math.min(0.033, (now - last) / 1000);
+        last = now;
+        const t = (now - t0) / 1000;
+
+        ctx.save();
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.fillStyle = 'rgba(10,10,15,0.10)';
+        ctx.fillRect(0, 0, W, H);
+        ctx.restore();
+
+        ctx.save();
+        ctx.globalCompositeOperation = 'lighter';
+        ctx.lineCap = 'round';
+
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+
+          const m = map.ready ? sampleMask(p.x, p.y) : 0;
+
+          let gx = 0, gy = 0;
+          if (map.ready) {
+            const e = 2.0 * DPR;
+            gx = sampleMask(p.x + e, p.y) - sampleMask(p.x - e, p.y);
+            gy = sampleMask(p.x, p.y + e) - sampleMask(p.x, p.y - e);
+          }
+
+          let tx = -gy, ty = gx;
+          const tl = Math.hypot(tx, ty) || 1;
+          tx /= tl; ty /= tl;
+
+          const f = field(p.x, p.y, t);
+
+          const k = 0.55 + 1.8 * m;
+          const vx = (f.vx * 0.85 + tx * k);
+          const vy = (f.vy * 0.85 + ty * k);
+
+          p.px = p.x; p.py = p.y;
+          p.x += vx * SPEED * (120 * DPR) * dt;
+          p.y += vy * SPEED * (120 * DPR) * dt;
+          p.life += 1;
+
+          const a = 0.06 + 0.18 * Math.min(1, m * 2);
+          ctx.strokeStyle = `hsla(${p.hue}, 95%, 65%, ${a})`;
+          ctx.lineWidth = p.w * DPR;
+          ctx.beginPath();
+          ctx.moveTo(p.px, p.py);
+          ctx.lineTo(p.x, p.y);
+          ctx.stroke();
+
+          if (p.x < -50 || p.x > W + 50 || p.y < -50 || p.y > H + 50 || p.life > 320) {
+            spawn(p);
+          }
+        }
+
+        ctx.restore();
+        requestAnimationFrame(step);
+      }
+
+      ctx.fillStyle = '#0a0a0f';
+      ctx.fillRect(0, 0, W, H);
+      requestAnimationFrame(step);
+    })();
+  </script>
 </body>
 </html>
