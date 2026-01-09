@@ -831,7 +831,7 @@
           const f = field(p.x, p.y, t), k = 0.55 + 1.8 * m;
           const vx = (f.vx * 0.85 + tx * k), vy = (f.vy * 0.85 + ty * k);
           p.px = p.x; p.py = p.y; p.x += vx * SPEED * (120 * DPR) * dt; p.y += vy * SPEED * (120 * DPR) * dt; p.life += 1;
-          const a = 0.18 + 0.40 * Math.min(1, m * 2);
+          const a = 0.38 + 0.70 * Math.min(1, m * 2);
           ctx.strokeStyle = `hsla(${p.hue}, 95%, 65%, ${a})`; ctx.lineWidth = p.w * DPR;
           ctx.beginPath(); ctx.moveTo(p.px, p.py); ctx.lineTo(p.x, p.y); ctx.stroke();
           if (p.x < -50 || p.x > W + 50 || p.y < -50 || p.y > H + 50 || p.life > 320) spawn(p);
