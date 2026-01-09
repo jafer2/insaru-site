@@ -681,7 +681,7 @@
           p.life += 1;
 
           // Draw trail segment
-          const a = 0.06 + 0.18 * Math.min(1, m * 2); // brighter near silhouette zone
+          const a = 0.18 + 0.40 * Math.min(1, m * 2); // brighter near silhouette zone
           ctx.strokeStyle = `hsla(${p.hue}, 95%, 65%, ${a})`;
           ctx.lineWidth = p.w * DPR;
           ctx.beginPath();
