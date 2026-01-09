@@ -4,19 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Insaru – Replace Your Letting Agent. Keep 99% of Your Rent.</title>
+
   <meta name="description" content="Enterprise-grade property management for landlords. Zero-knowledge encryption, forced compliance, automated rent collection." />
   <meta property="og:title" content="Insaru – Replace Your Letting Agent"/>
   <meta property="og:description" content="Save £1,368/year per property. Local-first property management with automated compliance and rent collection."/>
   <meta property="og:image" content="branding/soon.png"/>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
       --cosmic-black: #0a0a0f;
@@ -24,10 +23,13 @@
       --cosmic-blue: #4da3ff;
       --cosmic-pink: #ff6b9d;
       --cosmic-gold: #ffd700;
+
       --text-primary: #ffffff;
       --text-secondary: #b8b8c8;
       --text-muted: #6e6e7e;
     }
+
+    html, body { height: 100%; }
 
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -38,339 +40,84 @@
       min-height: 100vh;
     }
 
-    /* Fractal background - MORE VISIBLE */
-    .fractal-background {
+    /* =========================
+       BACKGROUND: abstract maths field (canvas)
+       ========================= */
+    #mathBg {
       position: fixed;
-      top: 0;
-      left: 0;
+      inset: 0;
       width: 100%;
       height: 100%;
-      overflow: hidden;
+      display: block;
       z-index: 0;
     }
 
-    /* Main centered logo - BRIGHTER */
+    /* Large centered logo: STATIC */
     .logo-center {
-      position: absolute;
+      position: fixed;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 85%;
-      max-width: 1200px;
-      opacity: 0.35; /* Increased from 0.2 */
-      filter: blur(0.3px) drop-shadow(0 0 60px rgba(107, 76, 230, 0.4));
+      width: min(1200px, 88vw);
+      opacity: 0.16;
+      filter: drop-shadow(0 0 70px rgba(107, 76, 230, 0.35));
       pointer-events: none;
+      z-index: 1;
     }
 
-    /* Fractal pieces - MUCH MORE VISIBLE */
-    .fractal-piece {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 85%;
-      max-width: 1200px;
-      opacity: 0.4; /* Increased from 0.15 */
-      mix-blend-mode: screen;
-      pointer-events: none;
-      will-change: transform, opacity;
-      filter: drop-shadow(0 0 40px rgba(77, 163, 255, 0.3));
-    }
-
-    /* Individual pieces with stronger effects */
-    .piece-1 {
-      clip-path: polygon(50% 0%, 100% 50%, 50% 50%);
-      animation: piece1Move 8s ease-in-out infinite, pieceFloat1 12s ease-in-out infinite;
-      filter: hue-rotate(10deg) brightness(1.3) drop-shadow(0 0 30px rgba(77, 163, 255, 0.5));
-    }
-
-    .piece-2 {
-      clip-path: polygon(50% 50%, 100% 50%, 50% 100%);
-      animation: piece2Move 9s ease-in-out infinite, pieceFloat2 13s ease-in-out infinite;
-      animation-delay: -2s;
-      filter: hue-rotate(-10deg) brightness(1.2) drop-shadow(0 0 30px rgba(107, 76, 230, 0.5));
-    }
-
-    .piece-3 {
-      clip-path: polygon(0% 50%, 50% 50%, 50% 100%);
-      animation: piece3Move 10s ease-in-out infinite, pieceFloat3 14s ease-in-out infinite;
-      animation-delay: -4s;
-      filter: hue-rotate(20deg) brightness(1.25) drop-shadow(0 0 30px rgba(255, 107, 157, 0.5));
-    }
-
-    .piece-4 {
-      clip-path: polygon(0% 50%, 50% 0%, 50% 50%);
-      animation: piece4Move 11s ease-in-out infinite, pieceFloat4 15s ease-in-out infinite;
-      animation-delay: -6s;
-      filter: hue-rotate(-20deg) brightness(1.15) drop-shadow(0 0 30px rgba(77, 163, 255, 0.4));
-    }
-
-    /* Center keyhole - GLOWING */
-    .piece-5 {
-      clip-path: circle(15% at 50% 50%);
-      animation: piece5Move 7s ease-in-out infinite, pieceFloat5 11s ease-in-out infinite;
-      opacity: 0.5; /* Much brighter */
-      filter: brightness(1.5) drop-shadow(0 0 40px rgba(255, 215, 0, 0.6));
-    }
-
-    /* Outer ring pieces - MORE VISIBLE */
-    .piece-6 {
-      clip-path: polygon(50% 0%, 70% 15%, 50% 25%);
-      animation: piece6Move 13s ease-in-out infinite, pieceFloat6 16s ease-in-out infinite;
-      animation-delay: -1s;
-      opacity: 0.35; /* Increased */
-      filter: drop-shadow(0 0 25px rgba(107, 76, 230, 0.4));
-    }
-
-    .piece-7 {
-      clip-path: polygon(50% 25%, 70% 50%, 50% 50%);
-      animation: piece7Move 14s ease-in-out infinite, pieceFloat7 17s ease-in-out infinite;
-      animation-delay: -3s;
-      opacity: 0.35;
-      filter: drop-shadow(0 0 25px rgba(77, 163, 255, 0.4));
-    }
-
-    .piece-8 {
-      clip-path: polygon(30% 50%, 50% 50%, 50% 75%);
-      animation: piece8Move 15s ease-in-out infinite, pieceFloat8 18s ease-in-out infinite;
-      animation-delay: -5s;
-      opacity: 0.35;
-      filter: drop-shadow(0 0 25px rgba(255, 107, 157, 0.4));
-    }
-
-    /* More dramatic movement */
-    @keyframes piece1Move {
-      0%, 100% { transform: translate(-50%, -50%) translate(0, 0) rotate(0deg); }
-      50% { transform: translate(-50%, -50%) translate(20px, -25px) rotate(2deg); }
-    }
-
-    @keyframes piece2Move {
-      0%, 100% { transform: translate(-50%, -50%) translate(0, 0) rotate(0deg); }
-      50% { transform: translate(-50%, -50%) translate(25px, 20px) rotate(-2deg); }
-    }
-
-    @keyframes piece3Move {
-      0%, 100% { transform: translate(-50%, -50%) translate(0, 0) rotate(0deg); }
-      50% { transform: translate(-50%, -50%) translate(-20px, 25px) rotate(2deg); }
-    }
-
-    @keyframes piece4Move {
-      0%, 100% { transform: translate(-50%, -50%) translate(0, 0) rotate(0deg); }
-      50% { transform: translate(-50%, -50%) translate(-25px, -20px) rotate(-2deg); }
-    }
-
-    @keyframes piece5Move {
-      0%, 100% { transform: translate(-50%, -50%) translate(0, 0) scale(1); }
-      50% { transform: translate(-50%, -50%) translate(0, 0) scale(1.1); }
-    }
-
-    @keyframes piece6Move {
-      0%, 100% { transform: translate(-50%, -50%) translate(0, 0) rotate(0deg); }
-      50% { transform: translate(-50%, -50%) translate(15px, -20px) rotate(1.5deg); }
-    }
-
-    @keyframes piece7Move {
-      0%, 100% { transform: translate(-50%, -50%) translate(0, 0) rotate(0deg); }
-      50% { transform: translate(-50%, -50%) translate(20px, 15px) rotate(-1.5deg); }
-    }
-
-    @keyframes piece8Move {
-      0%, 100% { transform: translate(-50%, -50%) translate(0, 0) rotate(0deg); }
-      50% { transform: translate(-50%, -50%) translate(-15px, 20px) rotate(1.5deg); }
-    }
-
-    /* Stronger pulsing */
-    @keyframes pieceFloat1 {
-      0%, 100% { opacity: 0.4; filter: hue-rotate(10deg) brightness(1.3) blur(0.2px) drop-shadow(0 0 30px rgba(77, 163, 255, 0.5)); }
-      50% { opacity: 0.55; filter: hue-rotate(15deg) brightness(1.5) blur(0px) drop-shadow(0 0 50px rgba(77, 163, 255, 0.7)); }
-    }
-
-    @keyframes pieceFloat2 {
-      0%, 100% { opacity: 0.4; filter: hue-rotate(-10deg) brightness(1.2) blur(0.2px) drop-shadow(0 0 30px rgba(107, 76, 230, 0.5)); }
-      50% { opacity: 0.55; filter: hue-rotate(-5deg) brightness(1.4) blur(0px) drop-shadow(0 0 50px rgba(107, 76, 230, 0.7)); }
-    }
-
-    @keyframes pieceFloat3 {
-      0%, 100% { opacity: 0.4; filter: hue-rotate(20deg) brightness(1.25) blur(0.2px) drop-shadow(0 0 30px rgba(255, 107, 157, 0.5)); }
-      50% { opacity: 0.55; filter: hue-rotate(25deg) brightness(1.45) blur(0px) drop-shadow(0 0 50px rgba(255, 107, 157, 0.7)); }
-    }
-
-    @keyframes pieceFloat4 {
-      0%, 100% { opacity: 0.4; filter: hue-rotate(-20deg) brightness(1.15) blur(0.2px) drop-shadow(0 0 30px rgba(77, 163, 255, 0.4)); }
-      50% { opacity: 0.55; filter: hue-rotate(-15deg) brightness(1.35) blur(0px) drop-shadow(0 0 50px rgba(77, 163, 255, 0.6)); }
-    }
-
-    @keyframes pieceFloat5 {
-      0%, 100% { opacity: 0.5; filter: brightness(1.5) blur(0.2px) drop-shadow(0 0 40px rgba(255, 215, 0, 0.6)); }
-      50% { opacity: 0.7; filter: brightness(1.8) blur(0px) drop-shadow(0 0 60px rgba(255, 215, 0, 0.9)); }
-    }
-
-    @keyframes pieceFloat6 {
-      0%, 100% { opacity: 0.35; filter: blur(0.3px) drop-shadow(0 0 25px rgba(107, 76, 230, 0.4)); }
-      50% { opacity: 0.5; filter: blur(0px) drop-shadow(0 0 40px rgba(107, 76, 230, 0.6)); }
-    }
-
-    @keyframes pieceFloat7 {
-      0%, 100% { opacity: 0.35; filter: blur(0.3px) drop-shadow(0 0 25px rgba(77, 163, 255, 0.4)); }
-      50% { opacity: 0.5; filter: blur(0px) drop-shadow(0 0 40px rgba(77, 163, 255, 0.6)); }
-    }
-
-    @keyframes pieceFloat8 {
-      0%, 100% { opacity: 0.35; filter: blur(0.3px) drop-shadow(0 0 25px rgba(255, 107, 157, 0.4)); }
-      50% { opacity: 0.5; filter: blur(0px) drop-shadow(0 0 40px rgba(255, 107, 157, 0.6)); }
-    }
-
-    /* Smaller duplicates - MORE VISIBLE */
-    .fractal-duplicate {
-      position: absolute;
-      width: 350px;
-      opacity: 0.2; /* Increased from 0.08 */
-      mix-blend-mode: screen;
-      pointer-events: none;
-      animation: duplicateFloat 20s ease-in-out infinite;
-      filter: drop-shadow(0 0 30px rgba(107, 76, 230, 0.3));
-    }
-
-    .dup-1 { top: 10%; left: 15%; animation-delay: 0s; }
-    .dup-2 { top: 15%; right: 10%; animation-delay: -5s; }
-    .dup-3 { bottom: 20%; left: 10%; animation-delay: -10s; }
-    .dup-4 { bottom: 15%; right: 15%; animation-delay: -15s; }
-    .dup-5 { top: 50%; left: 5%; animation-delay: -7s; }
-    .dup-6 { top: 50%; right: 5%; animation-delay: -12s; }
-
-    @keyframes duplicateFloat {
-      0%, 100% {
-        transform: translate(0, 0) rotate(0deg) scale(1);
-        opacity: 0.2;
-      }
-      25% {
-        transform: translate(30px, -25px) rotate(8deg) scale(1.15);
-        opacity: 0.3;
-      }
-      50% {
-        transform: translate(40px, 15px) rotate(-5deg) scale(1.05);
-        opacity: 0.25;
-      }
-      75% {
-        transform: translate(-15px, 30px) rotate(6deg) scale(1.1);
-        opacity: 0.28;
-      }
-    }
-
-    /* Energy lines - BRIGHTER */
-    .energy-line {
-      position: absolute;
-      height: 2px; /* Thicker */
-      background: linear-gradient(90deg, transparent, var(--cosmic-blue), transparent);
-      opacity: 0;
-      animation: energyPulse 4s ease-in-out infinite;
-      pointer-events: none;
-      transform-origin: center;
-      box-shadow: 0 0 20px var(--cosmic-blue);
-    }
-
-    .line-1 {
-      top: 48%;
-      left: 48%;
-      width: 100px;
-      transform: rotate(45deg);
-      animation-delay: 0s;
-    }
-
-    .line-2 {
-      top: 52%;
-      left: 48%;
-      width: 100px;
-      transform: rotate(-45deg);
-      animation-delay: 1s;
-    }
-
-    .line-3 {
-      top: 50%;
-      left: 47%;
-      width: 120px;
-      transform: rotate(90deg);
-      animation-delay: 2s;
-    }
-
-    .line-4 {
-      top: 50%;
-      left: 49%;
-      width: 120px;
-      transform: rotate(0deg);
-      animation-delay: 3s;
-    }
-
-    @keyframes energyPulse {
-      0%, 100% { opacity: 0; transform: scaleX(0.5); }
-      50% { opacity: 0.4; transform: scaleX(1); } /* More visible */
-    }
-
-    /* Particle system */
-    .particle-container {
+    /* Vignette + light grain */
+    .fx {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      inset: 0;
       pointer-events: none;
-      z-index: 0;
+      z-index: 2;
+      background:
+        radial-gradient(60% 55% at 50% 40%, rgba(0,0,0,0) 0%, rgba(0,0,0,.32) 68%, rgba(0,0,0,.70) 100%),
+        linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.08) 45%, rgba(0,0,0,.62) 100%);
+    }
+    .fx::after{
+      content:"";
+      position:absolute;
+      inset:-40px;
+      opacity:.06;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.28'/%3E%3C/svg%3E");
     }
 
-    .particle {
-      position: absolute;
-      width: 3px; /* Larger */
-      height: 3px;
-      background: white;
-      border-radius: 50%;
-      opacity: 0.6; /* Brighter */
-      animation: particleDrift linear infinite;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-    }
-
-    @keyframes particleDrift {
-      0% { transform: translate(0, 0); opacity: 0; }
-      10% { opacity: 0.6; }
-      90% { opacity: 0.6; }
-      100% { transform: translate(var(--tx), var(--ty)); opacity: 0; }
-    }
-
-    /* Main container - less dark gradient */
+    /* =========================
+       FOREGROUND CONTENT
+       ========================= */
     .container {
       position: relative;
-      z-index: 1;
+      z-index: 3;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       padding: 2rem;
-      background: radial-gradient(circle at center, transparent 0%, rgba(10, 10, 15, 0.2) 60%, rgba(10, 10, 15, 0.7) 100%);
+      background: radial-gradient(circle at center, transparent 0%, rgba(10, 10, 15, 0.20) 60%, rgba(10, 10, 15, 0.75) 100%);
     }
 
     .content-section {
       text-align: center;
       max-width: 900px;
-      animation: fadeInScale 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+      animation: fadeInScale 1.0s cubic-bezier(0.16, 1, 0.3, 1);
       position: relative;
-      z-index: 2;
+      z-index: 4;
     }
 
     @keyframes fadeInScale {
-      0% { opacity: 0; transform: scale(0.9) translateY(30px); }
+      0% { opacity: 0; transform: scale(0.92) translateY(22px); }
       100% { opacity: 1; transform: scale(1) translateY(0); }
     }
 
+    /* Small logo above headline: STATIC */
     .logo-icon {
-      width: 100px;
-      height: 100px;
-      margin: 0 auto 2rem;
+      width: 92px;
+      height: 92px;
+      margin: 0 auto 1.75rem;
       filter: drop-shadow(0 0 40px rgba(107, 76, 230, 0.8));
-      animation: logoFloat 6s ease-in-out infinite;
-    }
-
-    @keyframes logoFloat {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-15px); }
     }
 
     .headline {
@@ -384,13 +131,7 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
-      filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
-    }
-
-    @keyframes fadeInUp {
-      0% { opacity: 0; transform: translateY(30px); }
-      100% { opacity: 1; transform: translateY(0); }
+      filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.25));
     }
 
     .headline-accent {
@@ -410,7 +151,6 @@
       max-width: 700px;
       margin: 0 auto 3rem;
       line-height: 1.7;
-      animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
     }
 
     .stats-grid {
@@ -419,31 +159,18 @@
       gap: 1.5rem;
       max-width: 800px;
       margin: 0 auto 3rem;
-      animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both;
     }
 
     .stat-card {
       background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.10);
       border-radius: 20px;
       padding: 2rem 1.5rem;
       text-align: center;
       backdrop-filter: blur(20px);
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s, border-color 0.35s, background 0.35s;
       position: relative;
       overflow: hidden;
-    }
-
-    .stat-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--cosmic-blue), transparent);
-      opacity: 0;
-      transition: opacity 0.3s ease;
     }
 
     .stat-card:hover {
@@ -451,10 +178,6 @@
       border-color: rgba(77, 163, 255, 0.5);
       background: rgba(255, 255, 255, 0.06);
       box-shadow: 0 20px 60px rgba(77, 163, 255, 0.2);
-    }
-
-    .stat-card:hover::before {
-      opacity: 1;
     }
 
     .stat-value {
@@ -474,10 +197,7 @@
       line-height: 1.4;
     }
 
-    .cta-section {
-      text-align: center;
-      animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.8s both;
-    }
+    .cta-section { text-align: center; }
 
     .launch-date {
       font-size: 1rem;
@@ -485,7 +205,7 @@
       margin-bottom: 1.5rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      font-weight: 500;
+      font-weight: 600;
     }
 
     .email-form {
@@ -506,18 +226,14 @@
       border-radius: 16px;
       color: var(--text-primary);
       outline: none;
-      transition: all 0.3s ease;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, transform 0.25s ease;
       font-family: 'Inter', sans-serif;
       backdrop-filter: blur(10px);
     }
 
-    .email-input::placeholder {
-      color: var(--text-muted);
-    }
-
     .email-input:focus {
       border-color: var(--cosmic-blue);
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.10);
       box-shadow: 0 0 0 4px rgba(77, 163, 255, 0.15);
       transform: translateY(-2px);
     }
@@ -526,14 +242,13 @@
       width: 100%;
       padding: 1.3rem 2.5rem;
       font-size: 1.05rem;
-      font-weight: 600;
+      font-weight: 700;
       background: linear-gradient(135deg, var(--cosmic-blue) 0%, var(--cosmic-purple) 100%);
       border: none;
       border-radius: 16px;
       color: white;
       cursor: pointer;
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      font-family: 'Inter', sans-serif;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s, opacity 0.25s;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       position: relative;
@@ -551,13 +266,18 @@
       transition: left 0.6s ease;
     }
 
-    .notify-button:hover::before {
-      left: 100%;
-    }
+    .notify-button:hover::before { left: 100%; }
 
     .notify-button:hover {
       transform: translateY(-4px) scale(1.02);
       box-shadow: 0 15px 50px rgba(77, 163, 255, 0.5);
+    }
+
+    .notify-button:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
     }
 
     .success-message {
@@ -568,17 +288,10 @@
       border-radius: 14px;
       color: #00ff7f;
       margin-top: 1rem;
-      animation: slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      animation: slideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
-
-    @keyframes slideIn {
-      from { opacity: 0; transform: translateY(-15px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .success-message.show {
-      display: block;
-    }
+    .success-message.show { display: block; }
+    @keyframes slideIn { from { opacity: 0; transform: translateY(-15px); } to { opacity: 1; transform: translateY(0); } }
 
     .social-proof {
       font-size: 0.85rem;
@@ -588,7 +301,7 @@
 
     footer {
       position: relative;
-      z-index: 1;
+      z-index: 3;
       text-align: center;
       padding: 3rem 2rem 2rem;
       font-size: 0.85rem;
@@ -604,69 +317,48 @@
       margin-bottom: 1.5rem;
       flex-wrap: wrap;
     }
-
     .footer-links a {
       color: var(--text-secondary);
       text-decoration: none;
-      transition: color 0.3s ease;
+      transition: color 0.25s ease;
     }
-
-    .footer-links a:hover {
-      color: var(--cosmic-blue);
-    }
+    .footer-links a:hover { color: var(--cosmic-blue); }
 
     @media (max-width: 768px) {
       .stats-grid { grid-template-columns: 1fr; }
-      .headline { font-size: 2rem; }
       .logo-icon { width: 80px; height: 80px; }
-      .fractal-piece, .logo-center { width: 120%; }
+      .logo-center { width: 92vw; opacity: 0.14; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #mathBg { display:none; }
     }
   </style>
 </head>
+
 <body>
-  <div class="fractal-background">
-    <!-- Center logo - brighter -->
-    <img src="branding/soon.png" alt="" class="logo-center"/>
-    
-    <!-- Deconstructed pieces - MORE VISIBLE -->
-    <img src="branding/soon.png" alt="" class="fractal-piece piece-1"/>
-    <img src="branding/soon.png" alt="" class="fractal-piece piece-2"/>
-    <img src="branding/soon.png" alt="" class="fractal-piece piece-3"/>
-    <img src="branding/soon.png" alt="" class="fractal-piece piece-4"/>
-    <img src="branding/soon.png" alt="" class="fractal-piece piece-5"/>
-    <img src="branding/soon.png" alt="" class="fractal-piece piece-6"/>
-    <img src="branding/soon.png" alt="" class="fractal-piece piece-7"/>
-    <img src="branding/soon.png" alt="" class="fractal-piece piece-8"/>
-    
-    <!-- Smaller duplicates - brighter -->
-    <img src="branding/soon.png" alt="" class="fractal-duplicate dup-1"/>
-    <img src="branding/soon.png" alt="" class="fractal-duplicate dup-2"/>
-    <img src="branding/soon.png" alt="" class="fractal-duplicate dup-3"/>
-    <img src="branding/soon.png" alt="" class="fractal-duplicate dup-4"/>
-    <img src="branding/soon.png" alt="" class="fractal-duplicate dup-5"/>
-    <img src="branding/soon.png" alt="" class="fractal-duplicate dup-6"/>
-    
-    <!-- Energy lines - brighter -->
-    <div class="energy-line line-1"></div>
-    <div class="energy-line line-2"></div>
-    <div class="energy-line line-3"></div>
-    <div class="energy-line line-4"></div>
-  </div>
+  <!-- Background maths field -->
+  <canvas id="mathBg"></canvas>
 
-  <div class="particle-container" id="particles"></div>
+  <!-- Static large centered logo -->
+  <img src="branding/soon.png" alt="" class="logo-center" aria-hidden="true"/>
 
+  <!-- Vignette / grain -->
+  <div class="fx" aria-hidden="true"></div>
+
+  <!-- Foreground content -->
   <div class="container">
     <div class="content-section">
       <img src="branding/soon.png" alt="Insaru" class="logo-icon"/>
-      
+
       <h1 class="headline">
         Replace Your Letting Agent.
         <span class="headline-accent">Keep 99% of Your Rent.</span>
       </h1>
 
       <p class="subheadline">
-        Enterprise-grade property management with zero-knowledge encryption, 
-        forced compliance workflows, and automated rent collection. 
+        Enterprise-grade property management with zero-knowledge encryption,
+        forced compliance workflows, and automated rent collection.
         Save £1,368/year per property.
       </p>
 
@@ -687,18 +379,17 @@
 
       <div class="cta-section">
         <div class="launch-date">Launching Q2 2026</div>
-        
+
         <form class="email-form" id="notifyForm">
-          <input 
-            type="email" 
-            class="email-input" 
+          <input
+            type="email"
+            class="email-input"
             placeholder="Enter your email for early access"
             required
             id="emailInput"
+            autocomplete="email"
           />
-          <button type="submit" class="notify-button">
-            Notify Me at Launch
-          </button>
+          <button type="submit" class="notify-button">Notify Me at Launch</button>
         </form>
 
         <div class="success-message" id="successMessage">
@@ -726,57 +417,294 @@
   </footer>
 
   <script>
-    // Create brighter particles
-    function createParticles() {
-      const container = document.getElementById('particles');
-      for (let i = 0; i < 40; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.top = Math.random() * 100 + '%';
-        const tx = (Math.random() - 0.5) * 400;
-        const ty = (Math.random() - 0.5) * 400;
-        particle.style.setProperty('--tx', tx + 'px');
-        particle.style.setProperty('--ty', ty + 'px');
-        particle.style.animationDuration = (15 + Math.random() * 15) + 's';
-        particle.style.animationDelay = Math.random() * 5 + 's';
-        container.appendChild(particle);
-      }
-    }
-    createParticles();
-
-    // Form submission
+    // Demo form submission
     document.getElementById('notifyForm').addEventListener('submit', function(e) {
       e.preventDefault();
       const button = this.querySelector('.notify-button');
       const successMessage = document.getElementById('successMessage');
       const emailInput = document.getElementById('emailInput');
-      
+
       button.disabled = true;
+      const oldText = button.textContent;
       button.textContent = 'Submitting...';
-      
+
       setTimeout(() => {
         successMessage.classList.add('show');
         emailInput.value = '';
-        button.textContent = 'Notify Me at Launch';
+        button.textContent = oldText;
         button.disabled = false;
         setTimeout(() => successMessage.classList.remove('show'), 5000);
-      }, 1000);
+      }, 900);
     });
 
-    // Enhanced mouse parallax for pieces
-    document.addEventListener('mousemove', (e) => {
-      const pieces = document.querySelectorAll('.fractal-piece');
-      const mouseX = (e.clientX / window.innerWidth - 0.5);
-      const mouseY = (e.clientY / window.innerHeight - 0.5);
-      
-      pieces.forEach((piece, i) => {
-        const speed = (i + 1) * 5;
-        const x = mouseX * speed;
-        const y = mouseY * speed;
-        piece.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
-      });
-    });
+    /**
+     * ABSTRACT MATHEMATICAL BACKGROUND
+     * - Not the logo as fractal.
+     * - Uses the logo ONLY as a "potential field" mask:
+     *   particles are influenced by the silhouette, but what you see is a
+     *   geometric flow-field (streamlines + domain-warp), not the logo itself.
+     *
+     * Requirements:
+     * - branding/soon.png should be transparent (best). If not, it still works.
+     */
+    (function () {
+      const canvas = document.getElementById('mathBg');
+      const ctx = canvas.getContext('2d', { alpha: false });
+
+      const DPR = Math.min(2, window.devicePixelRatio || 1);
+      let W = 0, H = 0;
+
+      // Mouse gently biases the field (does NOT move the logo)
+      const mouse = { x: 0.5, y: 0.5 };
+      window.addEventListener('mousemove', (e) => {
+        mouse.x = e.clientX / window.innerWidth;
+        mouse.y = e.clientY / window.innerHeight;
+      }, { passive: true });
+
+      // Load logo into an offscreen alpha map (low-res for speed)
+      const logo = new Image();
+      logo.decoding = 'async';
+      logo.crossOrigin = 'anonymous';
+      logo.src = 'branding/soon.png';
+
+      const map = {
+        ready: false,
+        w: 256,
+        h: 256,
+        data: null,
+        // logo placement in screen coords
+        cx: 0, cy: 0, size: 0
+      };
+
+      function resize() {
+        W = Math.floor(window.innerWidth * DPR);
+        H = Math.floor(window.innerHeight * DPR);
+        canvas.width = W;
+        canvas.height = H;
+
+        map.cx = W * 0.5;
+        map.cy = H * 0.5;
+        map.size = Math.min(W, H) * 0.62; // roughly matches big centered logo
+
+        // Clear
+        ctx.fillStyle = '#0a0a0f';
+        ctx.fillRect(0, 0, W, H);
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      function buildAlphaMap() {
+        const oc = document.createElement('canvas');
+        oc.width = map.w;
+        oc.height = map.h;
+        const octx = oc.getContext('2d');
+
+        octx.clearRect(0, 0, map.w, map.h);
+
+        // Fit logo into the alpha-map canvas
+        const s = Math.min(map.w, map.h) * 0.9;
+        const x = (map.w - s) / 2;
+        const y = (map.h - s) / 2;
+        octx.drawImage(logo, x, y, s, s);
+
+        const img = octx.getImageData(0, 0, map.w, map.h).data;
+        const a = new Float32Array(map.w * map.h);
+
+        // Use alpha if present; otherwise use luminance threshold.
+        for (let i = 0; i < map.w * map.h; i++) {
+          const r = img[i * 4 + 0];
+          const g = img[i * 4 + 1];
+          const b = img[i * 4 + 2];
+          const alpha = img[i * 4 + 3] / 255;
+
+          // If alpha is meaningful, prefer it. If not, use brightness.
+          const lum = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
+          const v = alpha > 0.02 ? alpha : Math.max(0, lum - 0.15);
+
+          a[i] = v;
+        }
+
+        map.data = a;
+        map.ready = true;
+      }
+
+      logo.onload = () => buildAlphaMap();
+      logo.onerror = () => { map.ready = false; };
+
+      // Fast alpha sample in screen coords
+      function sampleMask(px, py) {
+        if (!map.ready) return 0;
+
+        // Convert screen coord -> logo box -> map coord
+        const half = map.size / 2;
+        const lx = (px - (map.cx - half)) / map.size; // 0..1
+        const ly = (py - (map.cy - half)) / map.size; // 0..1
+        if (lx < 0 || lx > 1 || ly < 0 || ly > 1) return 0;
+
+        const ix = Math.max(0, Math.min(map.w - 1, (lx * (map.w - 1)) | 0));
+        const iy = Math.max(0, Math.min(map.h - 1, (ly * (map.h - 1)) | 0));
+        return map.data[iy * map.w + ix];
+      }
+
+      // Pseudo-noise (fast trig field). This is intentionally "mathematical".
+      function noise2(x, y, t) {
+        // x,y are in ~[-1..1] range
+        return Math.sin(1.7 * x + 1.3 * t) * Math.cos(1.9 * y - 1.1 * t)
+             + Math.sin(2.9 * (x + y) + 0.7 * t) * 0.5;
+      }
+
+      // Domain-warped curl-ish field
+      function field(px, py, t) {
+        // Normalize to -1..1
+        const x = (px / W) * 2 - 1;
+        const y = (py / H) * 2 - 1;
+
+        // Mouse bias (subtle)
+        const mx = (mouse.x - 0.5) * 0.18;
+        const my = (mouse.y - 0.5) * 0.18;
+
+        const w1 = noise2(x + mx, y + my, t);
+        const w2 = noise2(x * 1.7 - my, y * 1.7 + mx, t * 0.9);
+
+        // Warp coords
+        const wx = x + 0.18 * w1;
+        const wy = y + 0.18 * w2;
+
+        // Base angle
+        const a = noise2(wx, wy, t * 0.7);
+
+        // Curl-like vector (perpendicular gradients approximation)
+        const vx = Math.cos(a * Math.PI * 1.2) + 0.35 * Math.sin(w2 * 2.2);
+        const vy = Math.sin(a * Math.PI * 1.2) - 0.35 * Math.cos(w1 * 2.2);
+
+        return { vx, vy };
+      }
+
+      // Particles with trails
+      const particles = [];
+      const isMobile = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
+
+      const COUNT = isMobile ? 1400 : 2400;
+      const SPEED = isMobile ? 0.85 : 1.05;
+
+      function rand(n) { return Math.random() * n; }
+
+      function spawn(p) {
+        // Seed particles more densely near the logo silhouette area, but not exactly on it.
+        // This is how we "derive" the math-field from the logo without drawing the logo.
+        for (let tries = 0; tries < 60; tries++) {
+          const angle = rand(Math.PI * 2);
+          const radius = (0.18 + Math.random() * 0.42) * Math.min(W, H);
+          const x = map.cx + Math.cos(angle) * radius;
+          const y = map.cy + Math.sin(angle) * radius;
+
+          // Prefer zones where the logo mask is present OR near it
+          const m = sampleMask(x, y);
+          const ok = map.ready ? (m > 0.06 || Math.random() < 0.20) : true;
+          if (ok) {
+            p.x = x; p.y = y;
+            p.px = x; p.py = y;
+            p.life = 0;
+            p.hue = 200 + Math.random() * 90; // blue->purple->pink range
+            p.w = 0.6 + Math.random() * 1.2;
+            return;
+          }
+        }
+
+        // Fallback
+        p.x = rand(W); p.y = rand(H);
+        p.px = p.x; p.py = p.y;
+        p.life = 0;
+        p.hue = 200 + Math.random() * 90;
+        p.w = 0.6 + Math.random() * 1.2;
+      }
+
+      for (let i = 0; i < COUNT; i++) {
+        const p = { x: 0, y: 0, px: 0, py: 0, life: 0, hue: 0, w: 1 };
+        spawn(p);
+        p.life = Math.random() * 140; // de-sync
+        particles.push(p);
+      }
+
+      let last = performance.now();
+      let t0 = performance.now();
+
+      function step(now) {
+        const dt = Math.min(0.033, (now - last) / 1000);
+        last = now;
+        const t = (now - t0) / 1000;
+
+        // Fade (trails)
+        ctx.save();
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.fillStyle = 'rgba(10,10,15,0.10)'; // lower = longer trails
+        ctx.fillRect(0, 0, W, H);
+        ctx.restore();
+
+        // Draw particles (additive glow)
+        ctx.save();
+        ctx.globalCompositeOperation = 'lighter';
+        ctx.lineCap = 'round';
+
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+
+          // Influence from logo silhouette: tangent flow around edges
+          const m = map.ready ? sampleMask(p.x, p.y) : 0;
+
+          // Approx gradient by sampling nearby mask points (cheap)
+          let gx = 0, gy = 0;
+          if (map.ready) {
+            const e = 2.0 * DPR;
+            gx = sampleMask(p.x + e, p.y) - sampleMask(p.x - e, p.y);
+            gy = sampleMask(p.x, p.y + e) - sampleMask(p.x, p.y - e);
+          }
+
+          // Tangent = perpendicular to gradient
+          let tx = -gy, ty = gx;
+          const tl = Math.hypot(tx, ty) || 1;
+          tx /= tl; ty /= tl;
+
+          // Base flow field
+          const f = field(p.x, p.y, t);
+
+          // Combine: base field + (tangent swirl around silhouette)
+          // This creates “mathematical version of the form” without drawing it.
+          const k = 0.55 + 1.8 * m;               // more force near silhouette
+          const vx = (f.vx * 0.85 + tx * k);
+          const vy = (f.vy * 0.85 + ty * k);
+
+          // Update
+          p.px = p.x; p.py = p.y;
+          p.x += vx * SPEED * (120 * DPR) * dt;
+          p.y += vy * SPEED * (120 * DPR) * dt;
+          p.life += 1;
+
+          // Draw trail segment
+          const a = 0.06 + 0.18 * Math.min(1, m * 2); // brighter near silhouette zone
+          ctx.strokeStyle = `hsla(${p.hue}, 95%, 65%, ${a})`;
+          ctx.lineWidth = p.w * DPR;
+          ctx.beginPath();
+          ctx.moveTo(p.px, p.py);
+          ctx.lineTo(p.x, p.y);
+          ctx.stroke();
+
+          // Respawn conditions
+          if (p.x < -50 || p.x > W + 50 || p.y < -50 || p.y > H + 50 || p.life > 320) {
+            spawn(p);
+          }
+        }
+
+        ctx.restore();
+
+        requestAnimationFrame(step);
+      }
+
+      // Start loop
+      ctx.fillStyle = '#0a0a0f';
+      ctx.fillRect(0, 0, W, H);
+      requestAnimationFrame(step);
+    })();
   </script>
 </body>
 </html>
